@@ -1,8 +1,8 @@
 import streamlit as st
 import random
 import matplotlib.pyplot as plt
-import mysql.connector
-from mysql.connector import Error
+#import mysql.connector
+#from mysql.connector import Error
 
 def load_questions():
     return [
@@ -257,14 +257,14 @@ if "shuffled_questions" not in st.session_state:
         random.shuffle(question["options"])
     st.session_state.shuffled_questions = questions
 
-def connect_to_db():
-    return mysql.connector.connect(
-        host=st.secrets["HOST"],
-        port=st.secrets["PORT"],
-        user=st.secrets["USER"],
-        password=st.secrets["PASSWORD"],
-        database=st.secrets["DATABASE"]  # Replace with your actual database name
-    )        
+#def connect_to_db():
+ #   return mysql.connector.connect(
+ #       host=st.secrets["HOST"],
+ #       port=st.secrets["PORT"],
+ #       user=st.secrets["USER"],
+ #       password=st.secrets["PASSWORD"],
+ #       database=st.secrets["DATABASE"]  # Replace with your actual database name
+ #   )        
       
     
 
@@ -291,8 +291,8 @@ def run_quiz():
         
     name=st.text_input('Name: ')
     attempt_num=st.text_input('Attempt Number:')
-    connection = connect_to_db()
-    cursor = connection.cursor()
+    #connection = connect_to_db()
+    #cursor = connection.cursor()
     if st.button("Submit"):
         for i, question in enumerate(questions):
             if user_answers[i] == question['answer']:
@@ -305,11 +305,11 @@ def run_quiz():
 
         total_questions = len(questions)
         score_percentage = (correct_count / total_questions) * 100
-        cursor.execute("INSERT INTO QuizAttempts (user_id, attempt_number, final_score) VALUES (%s, %s, %s)", (name, attempt_num, correct_count))
+        #cursor.execute("INSERT INTO QuizAttempts (user_id, attempt_number, final_score) VALUES (%s, %s, %s)", (name, attempt_num, correct_count))
         attempt_id=cursor.lastrowid
-        for i, question in enumerate(questions):
-            cursor.execute("INSERT INTO AttemptDetails (attempt_id, question_number, chosen_option, is_correct) VALUES (%s, %s, %s, %s)",
-                   (attempt_id, question['question_number'], user_answers[i], user_answers[i] == question['answer']))
+        #for i, question in enumerate(questions):
+        #    cursor.execute("INSERT INTO AttemptDetails (attempt_id, question_number, chosen_option, is_correct) VALUES (%s, %s, %s, %s)",
+        #          (attempt_id, question['question_number'], user_answers[i], user_answers[i] == question['answer']))
         
         
         # Display score percentage bar
@@ -326,9 +326,9 @@ def run_quiz():
 
         st.write(f"Your raw score is: {correct_count}/{total_questions}")
         st.write(f"Your percentile score is: {score_percentage:.2f}%")
-        connection.commit()
-        cursor.close()
-        connection.close()
+        #connection.commit()
+        #cursor.close()
+        #connection.close()
 
 # Run the quiz
 run_quiz()
