@@ -306,7 +306,7 @@ def run_quiz():
         total_questions = len(questions)
         score_percentage = (correct_count / total_questions) * 100
         #cursor.execute("INSERT INTO QuizAttempts (user_id, attempt_number, final_score) VALUES (%s, %s, %s)", (name, attempt_num, correct_count))
-        attempt_id=cursor.lastrowid
+        #attempt_id=cursor.lastrowid
         #for i, question in enumerate(questions):
         #    cursor.execute("INSERT INTO AttemptDetails (attempt_id, question_number, chosen_option, is_correct) VALUES (%s, %s, %s, %s)",
         #          (attempt_id, question['question_number'], user_answers[i], user_answers[i] == question['answer']))
