@@ -1036,14 +1036,7 @@ def load_questions(who):
 
     ]
 # Shuffle questions and options once before loading
-if "shuffled_questions" not in st.session_state:
-    user_names=['Emily', 'Amina','David', 'Sara']
-    selected_user = st.selectbox("Select a student scenario", user_names)
-    questions = load_questions(selected_user)
-    #random.shuffle(questions)
-    #for question in questions:
-    #    random.shuffle(question["options"])
-    st.session_state.shuffled_questions = questions
+
 
 #def connect_to_db():
  #   return mysql.connector.connect(
@@ -1118,5 +1111,27 @@ def run_quiz():
         #cursor.close()
         #connection.close()
 
+
 # Run the quiz
-run_quiz()
+if "page" not in st.session_state:
+    st.session_state.page = "home"
+
+if st.session_state.page == "home":
+    st.title("Student Advisor Recommender System Quiz")
+    user_names=['Emily', 'Amina','David', 'Sara']
+    selected_user = st.selectbox("Select a student scenario", user_names)
+    username = st.text_input("Enter your name")
+
+    if st.button("Start Quiz") and username.strip():
+        st.session_state.page = "quiz"
+        questions = load_questions(selected_user)
+        st.session_state.shuffled_questions = questions
+        st.session_state["selected_user"] = selected_user
+        st.session_state["username"] = username.strip()
+        st.session_state["quiz_start_time"] = time.time()
+        
+        st.rerun()
+elif st.session_state.page == "quiz":
+    run_quiz()
+    
+
