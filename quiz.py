@@ -1128,8 +1128,6 @@ if st.session_state.page == "home":
         st.session_state.shuffled_questions = questions
         st.session_state["selected_user"] = selected_user
         st.session_state["username"] = username.strip()
-        st.session_state["quiz_start_time"] = time.time()
-        
         st.rerun()
 elif st.session_state.page == "quiz":
     run_quiz()
