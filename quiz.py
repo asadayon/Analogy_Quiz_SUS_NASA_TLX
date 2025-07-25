@@ -1037,10 +1037,12 @@ def load_questions(who):
     ]
 # Shuffle questions and options once before loading
 if "shuffled_questions" not in st.session_state:
-    questions = load_questions()
-    random.shuffle(questions)
-    for question in questions:
-        random.shuffle(question["options"])
+    user_names=['Emily', 'Amina','David', 'Sara']
+    selected_user = st.selectbox("Select a student scenario", user_names)
+    questions = load_questions(selected_user)
+    #random.shuffle(questions)
+    #for question in questions:
+    #    random.shuffle(question["options"])
     st.session_state.shuffled_questions = questions
 
 #def connect_to_db():
