@@ -1122,7 +1122,7 @@ if st.session_state.page == "home":
     selected_user = st.selectbox("Select a student scenario", user_names)
     #username = st.text_input("Enter your name")
 
-    if st.button("Start Quiz") and username.strip():
+    if st.button("Start Quiz"):
         st.session_state.page = "quiz"
         questions = load_questions(selected_user)
         st.session_state.shuffled_questions = questions
