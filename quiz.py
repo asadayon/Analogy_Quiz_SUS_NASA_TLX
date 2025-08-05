@@ -1070,8 +1070,8 @@ def run_quiz():
         )
         user_answers.append(user_answer)
         
-    name=st.text_input('Name: ')
-    attempt_num=st.text_input('Attempt Number:')
+    #name=st.text_input('Name: ')
+    #attempt_num=st.text_input('Attempt Number:')
     #connection = connect_to_db()
     #cursor = connection.cursor()
     if st.button("Submit"):
@@ -1120,16 +1120,17 @@ if st.session_state.page == "home":
     st.title("Student Advisor Recommender System Quiz")
     user_names=['Emily', 'Amina','David', 'Sara']
     selected_user = st.selectbox("Select a student scenario", user_names)
-    #username = st.text_input("Enter your name")
+    username = st.text_input("Enter your name")
 
     if st.button("Start Quiz"):
         st.session_state.page = "quiz"
         questions = load_questions(selected_user)
         st.session_state.shuffled_questions = questions
         st.session_state["selected_user"] = selected_user
-        #st.session_state["username"] = username.strip()
+        st.session_state["username"] = username.strip()
         st.rerun()
 elif st.session_state.page == "quiz":
     run_quiz()
     
+
 
