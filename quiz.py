@@ -1054,7 +1054,10 @@ def load_questions(who):
 def run_quiz():
     questions = st.session_state.shuffled_questions
 
+    
     st.title("Multiple Choice Quiz")
+    st.write(f"User: {st.session_state["username"]}")
+    st.write(f"Scenario: {st.session_state["selected_user"]}")
 
     user_answers = []
     correct_count = 0
@@ -1132,5 +1135,6 @@ if st.session_state.page == "home":
 elif st.session_state.page == "quiz":
     run_quiz()
     
+
 
 
