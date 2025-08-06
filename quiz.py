@@ -1071,8 +1071,9 @@ if st.session_state.page == "post_quiz":
         st.session_state.post_quiz_questions = post_quiz_questions
         #st.session_state.post_quiz_answers = {q["id"]: None for q in post_quiz_questions}
     
-    #def post_quiz_on_option_change(qid):
+    def post_quiz_on_option_change(qid):
             #st.session_state["post_quiz_answers"][qid] = st.session_state.get(f"q_{qid}", None)
+            pass
     
     for idx,q in enumerate (st.session_state.post_quiz_questions):
 
@@ -1184,6 +1185,7 @@ if st.session_state.page == "quiz":
         if st.button("Go To Survey"):
             st.session_state.page  = "post_quiz"
             st.rerun()
+
 
 
 
