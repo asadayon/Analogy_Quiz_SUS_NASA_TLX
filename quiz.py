@@ -1105,7 +1105,7 @@ if st.session_state.page == "post_quiz":
             </div>
             """, unsafe_allow_html=True)
         st.markdown("")
-    if st.button("Submit"):
+    if st.button("Done"):
         #unanswered = [qid for qid, ans in st.session_state.post_quiz_answers.items() if ans is None]
 
         #if unanswered:
@@ -1182,6 +1182,7 @@ if st.session_state.page == "quiz":
         if st.button("Go To Survey"):
             st.session_state.page  = "post_quiz"
             st.rerun()
+
 
 
 
