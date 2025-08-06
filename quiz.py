@@ -1112,15 +1112,15 @@ def run_post_quiz():
         random.shuffle(post_quiz_questions)
 
         st.session_state.post_quiz_questions = post_quiz_questions
-        st.session_state.post_quiz_answers = {q["id"]: None for q in post_quiz_questions}
+        #st.session_state.post_quiz_answers = {q["id"]: None for q in post_quiz_questions}
     
-    def post_quiz_on_option_change(qid):
-            st.session_state["post_quiz_answers"][qid] = st.session_state.get(f"q_{qid}", None)
+    #def post_quiz_on_option_change(qid):
+            #st.session_state["post_quiz_answers"][qid] = st.session_state.get(f"q_{qid}", None)
     
     for idx,q in enumerate (st.session_state.post_quiz_questions):
 
-        question = q["question"]
-        qid = q["id"]
+        question = q
+        qid = idx
         
         st.markdown(f"**Q{idx+1}. {question}**")
         col1,col2,col3 = st.columns([2.5, 6, 2])
@@ -1148,11 +1148,11 @@ def run_post_quiz():
             """, unsafe_allow_html=True)
         st.markdown("")
     if st.button("Submit"):
-        unanswered = [qid for qid, ans in st.session_state.post_quiz_answers.items() if ans is None]
+        #unanswered = [qid for qid, ans in st.session_state.post_quiz_answers.items() if ans is None]
 
-        if unanswered:
-            st.error("Please answer all questions before submitting.")
-        else:
+        #if unanswered:
+         #   st.error("Please answer all questions before submitting.")
+        #else:
             st.write("Thank you for Submitting the Survey")
 
 # Run the quiz
@@ -1176,6 +1176,7 @@ if st.session_state.page == "quiz":
     run_quiz()
 if st.session_state.page == "post_quiz":
     run_post_quiz()
+
 
 
 
