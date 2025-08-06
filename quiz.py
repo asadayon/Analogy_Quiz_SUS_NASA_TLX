@@ -1263,9 +1263,12 @@ if st.session_state.page == "quiz":
              #   st.error("Please answer all questions before submitting.")
             #else:
                 st.write("Thank you for Submitting the Survey")
+                st.st.session_state.page='home'
+                st.rerun()
                 
     
                 
+
 
 
 
