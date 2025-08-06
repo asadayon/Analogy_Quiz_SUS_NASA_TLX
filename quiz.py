@@ -1069,7 +1069,91 @@ def run_quiz():
         #connection.commit()
         #cursor.close()
         #connection.close()
+        if st.button("Go To Survey"):
+            st.session_state.page = "post_quiz"
+            st.rerun()
 
+def run_post_quiz():
+    username = st.session_state.get("username", "anonymous")
+    st.markdown("### Post Quiz Survey")
+    st.markdown("---")
+
+    st.write(f"Hello, {username}")
+    opts = list(range(1,8))
+    likert_labels = {
+        1: "Strongly Disagree",
+        2: "Disagree",
+        3: "Somewhat Disagree",
+        4: "Neutral",
+        5: "Somewhat Agree",
+        6: "Agree",
+        7: "Strongly Agree"
+    }
+    if opts[-1] == 5:
+        likert_labels = {
+            1: "Strongly Disagree",
+            2: "Disagree",
+            3: "Neutral",
+            4: "Agree",
+            5: "Strongly Agree"
+        }
+
+        
+    st.write("#### 📝 Please complete the following survey")
+    st.markdown(
+        """This survey helps us understand how well the system’s explanations supported your understanding of the advisor recommendation process and your trust in its recommendations. Your feedback will help us improve the clarity and usefulness of the explanations for future users, whether delivered through static text or an interactive interface."""
+    )
+    
+    st.write("---")
+
+    if "post_quiz_questions" not in st.session_state:        
+        post_quiz_questions = load_survey()
+
+        random.shuffle(post_quiz_questions)
+
+        st.session_state.post_quiz_questions = post_quiz_questions
+        st.session_state.post_quiz_answers = {q["id"]: None for q in post_quiz_questions}
+    
+    def post_quiz_on_option_change(qid):
+            st.session_state["post_quiz_answers"][qid] = st.session_state.get(f"q_{qid}", None)
+    
+    for idx,q in enumerate (st.session_state.post_quiz_questions):
+
+        question = q["question"]
+        qid = q["id"]
+        
+        st.markdown(f"**Q{idx+1}. {question}**")
+        col1,col2,col3 = st.columns([2.5, 6, 2])
+        with col1:
+            st.markdown("""
+            <div style='display:flex; align-items:center; height:100%; padding-top:0.5rem'>
+                Strongly Disagree
+            </div>
+            """, unsafe_allow_html=True)
+        with col2:
+            st.radio(
+                label=f"Q{idx+1}. {question}",
+                label_visibility = "collapsed",
+                options=opts,
+                index=None,
+                key=f"q_{qid}",
+                horizontal = True,
+                on_change = lambda qid=qid:post_quiz_on_option_change(qid)
+            )
+        with col3:
+            st.markdown("""
+            <div style='display:flex; align-items:center; height:100%; padding-top:0.5rem'>
+                Strongly Agree
+            </div>
+            """, unsafe_allow_html=True)
+        st.markdown("")
+    if st.button("Submit"):
+        unanswered = [qid for qid, ans in st.session_state.post_quiz_answers.items() if ans is None]
+
+        if unanswered:
+            st.error("Please answer all questions before submitting.")
+        else:
+            st.write("Thank you for Submitting the Survey")
 
 # Run the quiz
 if "page" not in st.session_state:
@@ -1090,7 +1174,9 @@ if st.session_state.page == "home":
         st.rerun()
 elif st.session_state.page == "quiz":
     run_quiz()
-    
+elif st.session_state.page == "post_quiz":
+    run_post_quiz()
+
 
 
 
