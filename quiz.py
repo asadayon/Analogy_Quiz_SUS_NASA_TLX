@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 #from mysql.connector import Error
 
 def load_questions(who):
-    if who=='Amina':
+    if who=='Amina Rahman':
         return [
     {
         "question": "How can text similarity-based models be used in an advisor recommender system for Amina Rahman’s research interests?",
@@ -262,7 +262,7 @@ def load_questions(who):
         "explanation": "Feature-Based: The keyword’s 0.4 proportion for 'adaptive mobile apps' means 0.4 * 10 = 4 occurrences are expected to belong to that topic."
     }
 ]
-    elif who=='Emily':
+    elif who=='Emily Zhang':
         return [
     {
         "question": "How can text similarity-based models be used in an advisor recommender system for Emily Zhang’s research interests?",
@@ -519,7 +519,7 @@ def load_questions(who):
         "explanation": "Feature-Based: The keyword’s 0.4 proportion for 'software system evolution' means 0.4 * 10 = 4 occurrences are expected to belong to that topic."
     }
 ]
-    elif who=='David':
+    elif who=='David Chen':
         return [
     {
         "question": "How can text similarity-based models be used in an advisor recommender system for David Chen’s research interests?",
@@ -776,7 +776,7 @@ def load_questions(who):
         "explanation": "Feature-Based: The keyword’s 0.4 proportion for 'multi-robot systems' means 0.4 * 10 = 4 occurrences are expected to belong to that topic."
     }
 ]
-    if who=='Sara':
+    if who=='Sara Lee':
         return [
         
     {
@@ -1121,7 +1121,7 @@ if "page" not in st.session_state:
 
 if st.session_state.page == "home":
     st.title("Student Advisor Recommender System Quiz")
-    user_names=['Emily', 'Amina','David', 'Sara']
+    user_names=['Emily Zhang', 'Amina Rahman','David Chen', 'Sara Lee']
     selected_user = st.selectbox("Select a student scenario", user_names)
     username = st.text_input("Enter your name")
 
@@ -1135,6 +1135,7 @@ if st.session_state.page == "home":
 elif st.session_state.page == "quiz":
     run_quiz()
     
+
 
 
 
