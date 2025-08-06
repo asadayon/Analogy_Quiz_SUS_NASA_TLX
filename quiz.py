@@ -1264,10 +1264,11 @@ if st.session_state.page == "quiz":
             #else:
                 st.write("Thank you for Submitting the Survey")
                 st.st.session_state.page='home'
-                st.rerun()
+                
                 
     
                 
+
 
 
 
