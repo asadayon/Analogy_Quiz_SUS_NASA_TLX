@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 def load_questions(who):
     if who=='Amina Rahman':
         return [
-    {
+     {
         "question": "How can text similarity-based models be used in an advisor recommender system for Amina Rahman’s research interests?",
         "options": [
             "By analyzing personality traits of Amina and advisors to find the best match",
@@ -16,7 +16,8 @@ def load_questions(who):
             "By considering the geographical location of Amina and advisors for recommendations"
         ],
         "answer": "By comparing textual descriptions of context-aware mobile systems and adaptive applications from Amina and advisors to find the best alignment",
-        "question_number": 1
+        "question_number": 1,
+        "explanation": "Feature-Based: The text similarity model uses cosine similarity to compare Amina’s keywords, such as 'mobile devices' and 'mobile applications,' with advisors’ publication keywords to identify alignment."
     },
     {
         "question": "What is the primary goal of using cosine similarity in an advisor recommendation system for Amina Rahman’s research? For example, if Amina’s keywords include 'context-aware systems' and 'adaptive mobile apps,' the system identifies advisors with similar keywords in their profiles.",
@@ -31,235 +32,220 @@ def load_questions(who):
         "explanation": "Feature-Based: The system recommends advisors whose publication keywords (e.g., 'context-aware systems,' 'adaptive mobile apps') closely match Amina’s, as measured by cosine similarity."
     },
     {
-        "question": "How is cosine similarity calculated between two vectors representing Amina’s and an advisor’s research interests in mobile adaptive systems?",
+        "question": "What role does LDA topic modeling play in recommending advisors for Amina’s research interests in mobile devices and adaptive systems?",
         "options": [
-            "By adding the magnitudes of the two vectors",
-            "By finding the difference between the two vectors",
-            "By dividing the dot product of the vectors by the product of their magnitudes",
-            "By calculating the Euclidean distance between the vectors"
+            "It calculates the Euclidean distance between keyword vectors",
+            "It groups Amina’s keywords into research themes like mobile technologies and compares them to advisors’ topic profiles",
+            "It ranks advisors based on their citation counts",
+            "It directly matches individual keywords without considering themes"
         ],
-        "answer": "By dividing the dot product of the vectors by the product of their magnitudes",
-        "question_number": 3
+        "answer": "It groups Amina’s keywords into research themes like mobile technologies and compares them to advisors’ topic profiles",
+        "question_number": 3,
+        "explanation": "Model Inner Working: LDA assigns keywords like 'mobile devices' to topics (e.g., Topic 22: mobil, devic, system) and compares Amina’s topic distribution to advisors’ profiles."
     },
     {
-        "question": "Which of the following is true about cosine similarity when used for matching Amina’s interest in adaptive mobile apps with advisors? For instance, if Amina’s keywords are longer than an advisor’s, cosine similarity still compares their alignment effectively.",
+        "question": "Why does the advisor recommendation system for Amina use both cosine similarity and LDA topic modeling?",
         "options": [
-            "It only works with binary data",
-            "It ranges from -1 to 1, where 1 means completely dissimilar",
-            "It is not affected by the length of the keyword vectors",
-            "It is computationally intensive and not suitable for large datasets"
+            "To reduce the computational complexity of keyword matching",
+            "To combine specific keyword matches with broader research theme alignment for robust recommendations",
+            "To ensure all advisors have the same ranking in both models",
+            "To eliminate the need for user-provided keywords"
         ],
-        "answer": "It is not affected by the length of the keyword vectors",
+        "answer": "To combine specific keyword matches with broader research theme alignment for robust recommendations",
         "question_number": 4,
-        "explanation": "Feature-Based: Cosine similarity focuses on the angle between vectors, so it effectively compares Amina’s keywords (e.g., 'adaptive mobile apps,' 'context-aware systems') with advisors’ profiles regardless of vector length."
+        "explanation": "General: Using both models ensures precise keyword matches (cosine) and thematic alignment (LDA), improving recommendation accuracy for Amina’s interests."
     },
     {
-        "question": "Why is it important to preprocess Amina’s research keywords (e.g., 'context-aware systems,' 'adaptive mobile apps,' 'resource-constrained devices') before applying cosine similarity?",
+        "question": "What does Oriana Riva’s cosine similarity score of 0.9104 indicate for Amina’s research interests in mobile applications?",
         "options": [
-            "To increase the complexity of the algorithm",
-            "To ensure keywords are in a uniform format for accurate comparison",
-            "To reduce the dimensionality of the vectors",
-            "To encrypt the data for security"
+            "A weak alignment with Amina’s research interests",
+            "A strong alignment with Amina’s research interests",
+            "No alignment with Amina’s research interests",
+            "A random match unrelated to mobile technologies"
         ],
-        "answer": "To ensure keywords are in a uniform format for accurate comparison",
-        "question_number": 5
+        "answer": "A strong alignment with Amina’s research interests",
+        "question_number": 5,
+        "explanation": "Scenario-Specific: A score of 0.9104, close to 1, indicates a strong match between Amina’s keywords (e.g., 'mobile devices,' 'context information') and Oriana’s profile."
     },
     {
-        "question": "Which preprocessing step is commonly applied to Amina’s research keywords before computing cosine similarity for advisor recommendations?",
+        "question": "Which of Amina’s keywords likely contributed most to Oriana Riva’s top ranking in the cosine similarity model?",
         "options": [
-            "Tokenization of terms like 'context-aware systems'",
-            "Vector normalization of keyword counts",
-            "Stop word removal from research descriptions",
-            "All of the above"
+            "Resource-constrained mobile devices",
+            "Parallel processing",
+            "Software evolution",
+            "Static program analysis"
         ],
-        "answer": "All of the above",
-        "question_number": 6
+        "answer": "Resource-constrained mobile devices",
+        "question_number": 6,
+        "explanation": "Feature-Based: Oriana’s keywords include 'resource-constrained mobile device,' directly matching Amina’s interest, contributing to her high score of 0.9104."
     },
     {
-        "question": "What does a cosine similarity score of 1 indicate when matching Amina’s interest in context-aware mobile systems with an advisor? For example, if Amina’s keywords exactly match an advisor’s, the system recommends that advisor as a perfect fit.",
+        "question": "Why was Sotirios I. Maniatis ranked first in the LDA topic modeling results for Amina?",
         "options": [
-            "Amina’s and the advisor’s research interests in context-aware mobile systems are identical",
-            "Amina’s and the advisor’s research interests are completely different",
-            "Amina’s and the advisor’s research interests are orthogonal",
-            "The cosine similarity score is invalid for this context"
+            "His keywords focus on static program analysis",
+            "His topic distribution aligns strongly with Topic 22 (mobil, devic, system)",
+            "He has the highest cosine similarity score",
+            "His research is unrelated to mobile technologies"
         ],
-        "answer": "Amina’s and the advisor’s research interests in context-aware mobile systems are identical",
+        "answer": "His topic distribution aligns strongly with Topic 22 (mobil, devic, system)",
         "question_number": 7,
-        "explanation": "Feature-Based: A score of 1 means the advisor’s publications have the same keywords (e.g., 'context-aware systems,' 'adaptive mobile apps') as Amina’s input, indicating a perfect alignment."
+        "explanation": "Scenario-Specific: Maniatis’ topic profile aligns with Topic 22, which includes Amina’s keywords like 'mobile devices,' leading to a high similarity score of 0.9899."
     },
     {
-        "question": "Why might cosine similarity be preferred over Euclidean distance for matching Amina’s mobile technology interests with advisors? If Amina’s keywords were 'mobile user experience' instead, Euclidean distance might penalize advisors with more publications.",
+        "question": "What does the LDA topic probability of 0.7456 for Topic 22 mean for Amina’s research interests?",
         "options": [
-            "Because it is less affected by the size of the keyword vectors",
-            "Because it considers the absolute positions of keywords",
-            "Because it only works with large datasets of mobile technology research",
-            "Because it is easier to interpret than other measures"
+            "Her interests are weakly aligned with mobile technologies",
+            "Her interests are strongly aligned with mobile-related research themes",
+            "Her interests are unrelated to Topic 22",
+            "Her interests are evenly distributed across all topics"
         ],
-        "answer": "Because it is less affected by the size of the keyword vectors",
+        "answer": "Her interests are strongly aligned with mobile-related research themes",
         "question_number": 8,
-        "explanation": "Counterfactual-Based: If Amina’s keywords were 'mobile user experience,' Euclidean distance might lower similarity scores for advisors with more publications due to vector magnitude differences, whereas cosine similarity focuses on direction."
+        "explanation": "Scenario-Specific: A high probability for Topic 22 (mobil, devic, system) indicates strong alignment with Amina’s mobile-focused research."
     },
     {
-        "question": "Consider the research interests: [Context-Aware Systems, Adaptive Mobile Apps, Resource-Constrained Devices, Mobile User Experience, Machine Learning for Mobile, IoT Integration]. Amina Rahman’s interests are: [Context-Aware Systems, Adaptive Mobile Apps, Resource-Constrained Devices]. What is her vector representation?",
+        "question": "Which of Amina’s keywords likely influenced Enrico Rukzio’s second-place ranking in the cosine similarity model?",
         "options": [
-            "[1,1,1,0,0,0]",
-            "[1,1,0,1,0,0]",
-            "[0,1,0,1,1,0]",
-            "[1,0,1,0,0,1]"
+            "Mobile interaction technique",
+            "Worst-case execution time",
+            "Software quality",
+            "Topological space"
         ],
-        "answer": "[1,1,1,0,0,0]",
-        "question_number": 9
+        "answer": "Mobile interaction technique",
+        "question_number": 9,
+        "explanation": "Feature-Based: Enrico’s keywords like 'mobile interaction technique' align with Amina’s focus on mobile applications, contributing to his score of 0.8383."
     },
     {
-        "question": "Suppose Amina’s research interest vector is: [1,1,1,0,0]. Given advisor vectors: Advisor A: [1,0,1,1,0], Advisor B: [1,1,1,0,1], Advisor C: [0,1,0,1,1], Advisor D: [1,1,1,0,0]. Which advisor is most similar to Amina based on cosine similarity? The system recommends Advisor D because their keywords match exactly.",
+        "question": "How did Amina’s keyword 'mobile users' contribute to Cory Cornelius’ ranking in the cosine similarity model?",
         "options": [
-            "Advisor A",
-            "Advisor B",
-            "Advisor C",
-            "Advisor D"
+            "It had no impact due to lack of overlap",
+            "It matched Cory’s focus on 'personal mobile device' and 'mobile application'",
+            "It reduced Cory’s ranking due to mismatch",
+            "It aligned with Cory’s focus on static analysis"
         ],
-        "answer": "Advisor D",
+        "answer": "It matched Cory’s focus on 'personal mobile device' and 'mobile application'",
         "question_number": 10,
-        "explanation": "Feature-Based: Advisor D’s vector [1,1,1,0,0] matches Amina’s exactly, yielding a cosine similarity of 1, as their research interests (context-aware systems, adaptive mobile apps, resource-constrained devices) are identical."
+        "explanation": "Feature-Based: Cory’s keywords overlap with Amina’s 'mobile users' and 'mobile applications,' leading to his score of 0.8224."
     },
     {
-        "question": "Suppose Amina’s research interest vector for mobile technologies is [1,1,1,0] and Advisor X’s vector is [1,1,0,1]. What is the cosine similarity between Amina and Advisor X? If Amina omitted 'resource-constrained devices,' the similarity might increase.",
+        "question": "Which advisor’s keywords least align with Amina’s in the cosine similarity model?",
         "options": [
-            "0.2",
-            "0",
-            "0.82",
-            "0.87"
+            "Oriana Riva",
+            "Enrico Rukzio",
+            "Cory Cornelius",
+            "All align equally"
         ],
-        "answer": "0.82",
+        "answer": "Cory Cornelius",
         "question_number": 11,
-        "explanation": "Counterfactual-Based: Cosine similarity is 2/(sqrt(3)*sqrt(2)) ≈ 0.82. If Amina’s vector were [1,1,0,0] (omitting 'resource-constrained devices'), the similarity with Advisor X would increase to 1.0, as the vectors would be identical."
+        "explanation": "Scenario-Specific: Cory has the lowest cosine similarity score (0.8224) among the top three, indicating the least keyword alignment."
     },
     {
-        "question": "In the context of topic similarity search for Amina’s research, what is a 'topic'?",
+        "question": "Why does Nico Zazworka rank second in LDA but not in the top three for cosine similarity?",
         "options": [
-            "A specific research paper on adaptive mobile apps",
-            "A set of keywords representing areas like context-aware systems or resource-constrained devices",
-            "The title of Amina’s Ph.D. proposal",
-            "A list of publications by an advisor on mobile user experience"
+            "His keywords focus on mobile devices",
+            "His topic distribution aligns with Topic 22, but his keywords focus on software engineering",
+            "His cosine similarity score is higher than Oriana’s",
+            "His research has no overlap with Amina’s"
         ],
-        "answer": "A set of keywords representing areas like context-aware systems or resource-constrained devices",
-        "question_number": 12
+        "answer": "His topic distribution aligns with Topic 22, but his keywords focus on software engineering",
+        "question_number": 12,
+        "explanation": "Scenario-Specific: Nico’s topic alignment with Topic 22 is strong, but his keywords (e.g., 'software evolution') differ from Amina’s mobile focus."
     },
     {
-        "question": "How does Latent Dirichlet Allocation (LDA) help in matching Amina with advisors researching adaptive mobile apps? For example, it identifies topics like 'context-aware computing' in advisors’ publications.",
+        "question": "If Amina removes 'resource-constrained mobile devices' from her keywords, what might happen to Oriana Riva’s cosine similarity ranking?",
         "options": [
-            "By classifying mobile apps into predefined categories",
-            "By calculating the sentiment of mobile technology publications",
-            "By predicting the next keyword in Amina’s research description",
-            "By identifying underlying topics in context-aware systems and adaptive mobile app publications"
+            "It would likely increase her score",
+            "It would likely decrease her score",
+            "It would have no effect",
+            "It would make her rank third"
         ],
-        "answer": "By identifying underlying topics in context-aware systems and adaptive mobile app publications",
+        "answer": "It would likely decrease her score",
         "question_number": 13,
-        "explanation": "Feature-Based: LDA extracts topics such as 'context-aware computing' or 'adaptive mobile apps' from advisors’ publication data, enabling the system to match Amina with advisors whose topic distributions align with hers."
+        "explanation": "Counterfactual-Based: Removing 'resource-constrained mobile devices' reduces the overlap with Oriana’s keywords, lowering her cosine similarity score."
     },
     {
-        "question": "What type of input data is required for topic similarity search using LDA to match Amina with advisors?",
+        "question": "If Amina adds 'wearable sensor' to her keywords, which advisor might rise to the top in cosine similarity?",
         "options": [
-            "Numerical data representing mobile device battery usage",
-            "Keywords representing Amina’s and advisors’ interests in context-aware systems and adaptive mobile apps",
-            "Images of mobile app interfaces",
-            "Audio recordings of lectures on mobile user experience"
+            "Oriana Riva",
+            "Enrico Rukzio",
+            "Cory Cornelius",
+            "Sotirios I. Maniatis"
         ],
-        "answer": "Keywords representing Amina’s and advisors’ interests in context-aware systems and adaptive mobile apps",
-        "question_number": 14
+        "answer": "Cory Cornelius",
+        "question_number": 14,
+        "explanation": "Counterfactual-Based: Cory’s keywords include 'wearable sensor,' increasing alignment with Amina’s updated interests, potentially boosting his score."
     },
     {
-        "question": "Why is it important to preprocess Amina’s keywords like 'context-aware systems' and 'adaptive mobile apps' before applying LDA?",
+        "question": "How would adding 'wireless network' to Amina’s keywords affect the LDA topic modeling rankings?",
         "options": [
-            "To reduce noise and irrelevant information in the keyword set",
-            "To correct grammatical errors in publication titles",
-            "To increase the size of the publication dataset",
-            "To ensure all keywords are in uppercase"
+            "It would likely boost Sotirios I. Maniatis’ ranking",
+            "It would lower Nico Zazworka’s ranking",
+            "It would have no effect on rankings",
+            "It would make Reinhold Heckmann rank first"
         ],
-        "answer": "To reduce noise and irrelevant information in the keyword set",
-        "question_number": 15
+        "answer": "It would likely boost Sotirios I. Maniatis’ ranking",
+        "question_number": 15,
+        "explanation": "Counterfactual-Based: Maniatis’ keywords include 'wireless network,' aligning with Topic 22, likely increasing his LDA similarity score."
     },
     {
-        "question": "What is the output of the LDA model when recommending advisors for Amina’s mobile technology research? For example, it assigns a topic distribution like [0.5, 0.3, 0.2] to an advisor’s profile.",
+        "question": "How is Amina’s keyword 'mobile devices' represented in the cosine similarity model?",
         "options": [
-            "A single topic label for each of Amina’s keywords",
-            "A ranked list of advisors for Amina based on mobile technology topics",
-            "A probability distribution of topics for each publication or profile",
-            "A list of recommended mobile user experience research papers"
+            "As a topic probability",
+            "As a numerical count in a keyword vector",
+            "As a static analysis metric",
+            "As a software evolution score"
         ],
-        "answer": "A probability distribution of topics for each publication or profile",
+        "answer": "As a numerical count in a keyword vector",
         "question_number": 16,
-        "explanation": "Feature-Based: The LDA model outputs topic distributions (e.g., [0.5, 0.3, 0.2] for context-aware systems, adaptive mobile apps, resource-constrained devices) for advisors’ profiles, which are compared to Amina’s topic distribution to find matches."
+        "explanation": "Model Inner Working: Keywords like 'mobile devices' are converted into a count vector (e.g., [2, 1, 0, 1]) for cosine similarity calculations."
     },
     {
-        "question": "What is a potential challenge when using LDA to match Amina with advisors studying resource-constrained devices?",
+        "question": "What does the dot product in cosine similarity represent for Amina’s keywords?",
         "options": [
-            "LDA requires labeled data for training mobile technology topics",
-            "Determining the optimal number of topics for mobile technology research",
-            "LDA is only effective with small datasets of adaptive mobile app papers",
-            "Ensuring all mobile technology keywords are unique"
+            "The sum of matching keyword frequencies",
+            "The total number of publications",
+            "The Euclidean distance between vectors",
+            "The probability of topic alignment"
         ],
-        "answer": "Determining the optimal number of topics for mobile technology research",
-        "question_number": 17
+        "answer": "The sum of matching keyword frequencies",
+        "question_number": 17,
+        "explanation": "Model Inner Working: The dot product sums the product of matching keyword counts, e.g., for [2, 1] and [2, 2], it’s (2*2) + (1*2) = 6."
     },
     {
-        "question": "Why is it important to choose an appropriate number of topics in LDA for Amina’s advisor recommendation? If too few topics are chosen, 'resource-constrained devices' might merge with 'context-aware systems.'",
+        "question": "If Amina’s keyword vector is [2, 1, 0, 1] for [mobile devices, mobile applications, sensor data, resource-constrained] and Oriana’s is [2, 2, 0, 1], what is the dot product?",
         "options": [
-            "To ensure the model runs faster for mobile technology analysis",
-            "To minimize the number of publications needed",
-            "To balance between specificity (e.g., resource-constrained devices) and generality (e.g., mobile technology)",
-            "To increase the number of keywords in each publication"
-        ],
-        "answer": "To balance between specificity (e.g., resource-constrained devices) and generality (e.g., mobile technology)",
-        "question_number": 18,
-        "explanation": "Counterfactual-Based: If only two topics are used, specific areas like 'resource-constrained devices' might be lumped with 'context-aware systems,' reducing the system’s ability to distinguish advisors with precise expertise."
-    },
-    {
-        "question": "How does LDA represent Amina’s research document on adaptive mobile apps in the corpus?",
-        "options": [
-            "As a single topic like resource-constrained devices",
-            "As a mixture of topics (e.g., context-aware systems, adaptive mobile apps) with different proportions",
-            "As a random collection of mobile-related keywords",
-            "As a sequence of mobile app code snippets"
-        ],
-        "answer": "As a mixture of topics (e.g., context-aware systems, adaptive mobile apps) with different proportions",
-        "question_number": 19
-    },
-    {
-        "question": "If LDA identifies that Amina’s research document has a topic proportion of [0.6, 0.2, 0.2] for topics related to context-aware systems, adaptive mobile apps, and resource-constrained devices, what can be inferred? The system prioritizes advisors with high 'context-aware systems' topic scores.",
-        "options": [
-            "Amina is mostly interested in the context-aware systems topic",
-            "Amina has equal interest in all mobile-related topics",
-            "Amina is least interested in the context-aware systems topic",
-            "Amina’s interests are not related to any identified topics"
-        ],
-        "answer": "Amina is mostly interested in the context-aware systems topic",
-        "question_number": 20,
-        "explanation": "Feature-Based: The high proportion (0.6) for 'context-aware systems' indicates Amina’s primary interest, so the system recommends advisors with similar topic distributions."
-    },
-    {
-        "question": "Amina’s topic distribution is [0.25, 0.25, 0.5] for context-aware systems, adaptive mobile apps, and resource-constrained devices. Which advisor’s topic distribution is the best match? If Amina’s distribution were [0.1, 0.1, 0.8], the best match might differ.",
-        "options": [
-            "[0.2, 0.8, 0.5]",
-            "[0.4, 0.4, 0.2]",
-            "[0.1, 0.5, 0.4]",
-            "[0.3, 0.2, 0.5]"
-        ],
-        "answer": "[0.3, 0.2, 0.5]",
-        "question_number": 21,
-        "explanation": "Counterfactual-Based: The advisor with [0.3, 0.2, 0.5] is closest to Amina’s [0.25, 0.25, 0.5], especially in the dominant 'resource-constrained devices' topic. If Amina’s distribution were [0.1, 0.1, 0.8], an advisor with a higher 'resource-constrained devices' proportion (e.g., [0.2, 0.8, 0.5]) might be preferred."
-    },
-    {
-        "question": "If a keyword like 'adaptive mobile apps' has a topic distribution of [0.3, 0.4, 0.3] across context-aware systems, adaptive mobile apps, and resource-constrained devices, and appears 10 times in Amina’s document, how many times is it expected to belong to the 'adaptive mobile apps' topic?",
-        "options": [
-            "3",
             "4",
             "5",
-            "6"
+            "6",
+            "7"
         ],
-        "answer": "4",
-        "question_number": 22,
-        "explanation": "Feature-Based: The keyword’s 0.4 proportion for 'adaptive mobile apps' means 0.4 * 10 = 4 occurrences are expected to belong to that topic."
+        "answer": "6",
+        "question_number": 18,
+        "explanation": "Model Inner Working: Dot product = (2*2) + (1*2) + (0*0) + (1*1) = 4 + 2 + 0 + 1 = 6."
+    },
+    {
+        "question": "In LDA topic modeling, how are Amina’s keywords grouped into Topic 22?",
+        "options": [
+            "Based on their frequency in her input",
+            "Based on their co-occurrence in mobile-related research themes",
+            "Based on their cosine similarity scores",
+            "Based on their static analysis relevance"
+        ],
+        "answer": "Based on their co-occurrence in mobile-related research themes",
+        "question_number": 19,
+        "explanation": "Model Inner Working: LDA groups keywords like 'mobile devices' into Topic 22 (mobil, devic, system) based on co-occurrence patterns."
+    },
+    {
+        "question": "What does a cosine similarity score of 0.8224 for Cory Cornelius imply for Amina’s research interests?",
+        "options": [
+            "No alignment with Amina’s interests",
+            "A moderate alignment, still meaningful for niche areas",
+            "A perfect match with Amina’s interests",
+            "An error in the recommendation system"
+        ],
+        "answer": "A moderate alignment, still meaningful for niche areas",
+        "question_number": 20,
+        "explanation": "Scenario-Specific: A score of 0.8224 indicates a good but not perfect match, relevant for niche areas like mobile sensors in Amina’s interests."
     }
 ]
     elif who=='Emily Zhang':
@@ -1108,6 +1094,7 @@ if st.session_state.page == "home":
 elif st.session_state.page == "quiz":
     run_quiz()
     
+
 
 
 
