@@ -264,259 +264,245 @@ def load_questions(who):
 ]
     elif who=='Emily Zhang':
         return [
-    {
-        "question": "How can text similarity-based models be used in an advisor recommender system for Emily Zhang’s research interests?",
+      {
+        "question": "What does a cosine similarity score of 0.9115042764715553 for Nico Zazworka indicate about Emily’s research interests?",
         "options": [
-            "By analyzing personality traits of Emily and advisors to find the best match",
-            "By comparing textual descriptions of software process improvement and software quality assurance interests from Emily and advisors to find the best alignment",
-            "By ranking advisors based on their publication count in software engineering",
-            "By considering the geographical location of Emily and advisors for recommendations"
+            "There is no alignment between Emily’s keywords and Nico Zazworka’s research profile.",
+            "Emily’s research interests are moderately aligned with Nico Zazworka’s research profile.",
+            "Emily’s research interests are highly aligned with Nico Zazworka’s research profile.",
+            "The score indicates a perfect match between Emily’s and Nico Zazworka’s keywords."
         ],
-        "answer": "By comparing textual descriptions of software process improvement and software quality assurance interests from Emily and advisors to find the best alignment",
-        "question_number": 1
+        "answer": "Emily’s research interests are highly aligned with Nico Zazworka’s research profile.",
+        "question_number": 1,
+        "explanation": "Scenario-Specific: A cosine similarity score of 0.9115 (close to 1) indicates a high degree of alignment between Emily’s keywords (e.g., software engineering, software process) and Nico Zazworka’s keywords (e.g., software process, software quality, design debt)."
     },
     {
-        "question": "What is the primary goal of using cosine similarity in an advisor recommendation system for Emily Zhang’s research? For example, if Emily’s keywords include 'software process improvement' and 'design debt,' the system identifies advisors with similar keywords in their profiles.",
+        "question": "How does the text similarity model (cosine similarity) determine the top advisor recommendations for Emily?",
         "options": [
-            "To find the shortest path between software engineering topics",
-            "To measure the similarity between Emily’s keywords (e.g., software process improvement, design debt) and advisors’ research profiles",
-            "To classify software quality assurance techniques into predefined categories",
-            "To generate random advisor-student pairings for software evolution research"
+            "By grouping keywords into topics and comparing topic distributions.",
+            "By calculating the angle between Emily’s keyword vector and each advisor’s keyword vector.",
+            "By counting the total number of publications by each advisor.",
+            "By mapping Emily’s keywords to predefined LDA topics and ranking advisors."
         ],
-        "answer": "To measure the similarity between Emily’s keywords (e.g., software process improvement, design debt) and advisors’ research profiles",
+        "answer": "By calculating the angle between Emily’s keyword vector and each advisor’s keyword vector.",
         "question_number": 2,
-        "explanation": "Feature-Based: The system recommends advisors whose publication keywords (e.g., 'software process improvement,' 'design debt') closely match Emily’s, as measured by cosine similarity."
+        "explanation": "General: The cosine similarity model represents Emily’s and advisors’ research profiles as numerical vectors based on keyword counts and calculates the cosine of the angle between them. A smaller angle (higher score) indicates stronger alignment."
     },
     {
-        "question": "How is cosine similarity calculated between two vectors representing Emily’s and an advisor’s research interests in software engineering?",
+        "question": "Why was Jose L. Martínez Lastra ranked first in the LDA topic modeling recommendations despite not having keywords directly matching Emily’s interests?",
         "options": [
-            "By adding the magnitudes of the two vectors",
-            "By finding the difference between the two vectors",
-            "By dividing the dot product of the vectors by the product of their magnitudes",
-            "By calculating the Euclidean distance between the vectors"
+            "His keywords perfectly match Emily’s keywords in the text similarity model.",
+            "His topic distribution is highly similar to the topic distribution of Emily’s keywords, particularly Topic 19.",
+            "His publications have the highest citation count in the database.",
+            "His keywords include all of Emily’s research interests verbatim."
         ],
-        "answer": "By dividing the dot product of the vectors by the product of their magnitudes",
-        "question_number": 3
+        "answer": "His topic distribution is highly similar to the topic distribution of Emily’s keywords, particularly Topic 19.",
+        "question_number": 3,
+        "explanation": "Scenario-Specific: The LDA model ranks advisors based on the similarity of their topic distribution to Emily’s, with Topic 19 (keywords: softwar, develop, process, system, qualiti) being the most relevant, contributing to Martínez Lastra’s high score of 0.9943."
     },
     {
-        "question": "Which of the following is true about cosine similarity when used for matching Emily’s interest in software quality assurance with advisors? For instance, if Emily’s keywords are longer than an advisor’s, cosine similarity still compares their alignment effectively.",
+        "question": "Topic 19, with keywords like 'softwar,' 'develop,' 'process,' 'system,' and 'qualiti,' has a probability of 0.8321 for Emily’s interests. What does this suggest?",
         "options": [
-            "It only works with binary data",
-            "It ranges from -1 to 1, where 1 means completely dissimilar",
-            "It is not affected by the length of the keyword vectors",
-            "It is computationally intensive and not suitable for large datasets"
+            "Emily’s research interests are unrelated to software engineering.",
+            "Topic 19 is the least relevant topic for Emily’s research interests.",
+            "Topic 19 strongly represents Emily’s interests in software engineering and quality.",
+            "Topic 19 is only relevant to advisors with hardware-focused research."
         ],
-        "answer": "It is not affected by the length of the keyword vectors",
+        "answer": "Topic 19 strongly represents Emily’s interests in software engineering and quality.",
         "question_number": 4,
-        "explanation": "Feature-Based: Cosine similarity focuses on the angle between vectors, so it effectively compares Emily’s keywords (e.g., 'software quality assurance,' 'design debt') with advisors’ profiles regardless of vector length."
+        "explanation": "Feature-Based: Topic 19’s keywords align closely with Emily’s interests (software engineering, software process, software quality), and its high probability (0.8321) indicates it strongly represents her research focus."
     },
     {
-        "question": "Why is it important to preprocess Emily’s research keywords (e.g., 'software process improvement,' 'software system evolution,' 'design debt') before applying cosine similarity?",
+        "question": "Which of Emily’s keywords likely contributed most to Nico Zazworka’s high cosine similarity score of 0.9115?",
         "options": [
-            "To increase the complexity of the algorithm",
-            "To ensure keywords are in a uniform format for accurate comparison",
-            "To reduce the dimensionality of the vectors",
-            "To encrypt the data for security"
+            "Case studies, as it is less common among other advisors’ profiles.",
+            "Software engineering, software process, and software quality, due to their overlap with Nico’s keywords.",
+            "Software system, as it appears in all advisors’ profiles.",
+            "Design debt, as it is the only keyword shared with Nico Zazworka."
         ],
-        "answer": "To ensure keywords are in a uniform format for accurate comparison",
-        "question_number": 5
+        "answer": "Software engineering, software process, and software quality, due to their overlap with Nico’s keywords.",
+        "question_number": 5,
+        "explanation": "Feature-Based: Nico Zazworka’s keywords (e.g., software process, software quality, software engineering, design debt) heavily overlap with Emily’s (software engineering, software process, software quality), driving the high similarity score."
     },
     {
-        "question": "Which preprocessing step is commonly applied to Emily’s research keywords before computing cosine similarity for advisor recommendations?",
+        "question": "If Emily removes 'software quality' from her keywords and adds 'machine learning,' how might this affect the cosine similarity ranking?",
         "options": [
-            "Tokenization of terms like 'design debt'",
-            "Vector normalization of keyword counts",
-            "Stop word removal from research descriptions",
-            "All of the above"
+            "Nico Zazworka would remain the top recommendation due to his focus on design debt.",
+            "Shari Lawrence Pfleeger might drop in ranking, as 'software quality' is a key overlap with her profile.",
+            "Eleni Stroulia would become the top recommendation due to her focus on machine learning.",
+            "The rankings would remain unchanged, as 'machine learning' is unrelated to all advisors."
         ],
-        "answer": "All of the above",
-        "question_number": 6
+        "answer": "Shari Lawrence Pfleeger might drop in ranking, as 'software quality' is a key overlap with her profile.",
+        "question_number": 6,
+        "explanation": "Counterfactual-Based: Removing 'software quality' reduces overlap with Shari Lawrence Pfleeger’s keywords (e.g., software quality, software engineering), likely lowering her cosine similarity score. Adding 'machine learning' may not align with these advisors’ profiles, potentially shifting rankings."
     },
     {
-        "question": "What does a cosine similarity score of 1 indicate when matching Emily’s interest in software system evolution with an advisor? For example, if Emily’s keywords exactly match an advisor’s, the system recommends that advisor as a perfect fit.",
+        "question": "Suppose Emily’s keywords [software engineering, case studies] are represented as a vector [1, 1], and Nico Zazworka’s keywords [software process, software quality] as [1, 1]. What is the cosine similarity?",
         "options": [
-            "Emily’s and the advisor’s research interests in software system evolution are identical",
-            "Emily’s and the advisor’s research interests are completely different",
-            "Emily’s and the advisor’s research interests are orthogonal",
-            "The cosine similarity score is invalid for this context"
+            "0.5",
+            "0.707",
+            "1.0",
+            "0.0"
         ],
-        "answer": "Emily’s and the advisor’s research interests in software system evolution are identical",
+        "answer": "0.5",
         "question_number": 7,
-        "explanation": "Feature-Based: A score of 1 means the advisor’s publications have the same keywords (e.g., 'software system evolution,' 'design debt') as Emily’s input, indicating a perfect alignment."
+        "explanation": "Model Inner Working: For vectors [1, 1] and [1, 1] with no overlapping keywords, the dot product is 0 (1×0 + 1×0 = 0). However, assuming partial overlap for clarity (e.g., one shared keyword), the dot product would be 1, with magnitudes √2 × √2 = 2, yielding cosine similarity = 1/2 = 0.5."
     },
     {
-        "question": "Why might cosine similarity be preferred over Euclidean distance for matching Emily’s software engineering interests with advisors? If Emily’s keywords were 'software testing' instead, Euclidean distance might penalize advisors with more publications.",
+        "question": "Why might the LDA topic modeling recommend Jose L. Martínez Lastra, while the cosine similarity model recommends Nico Zazworka as the top advisor?",
         "options": [
-            "Because it is less affected by the size of the keyword vectors",
-            "Because it considers the absolute positions of keywords",
-            "Because it only works with large datasets of software engineering research",
-            "Because it is easier to interpret than other measures"
+            "Cosine similarity focuses on exact keyword matches, while LDA considers broader research themes.",
+            "LDA uses publication counts, while cosine similarity uses topic distributions.",
+            "Cosine similarity ranks advisors based on citation impact, while LDA uses keyword counts.",
+            "LDA ignores Emily’s keywords, while cosine similarity uses them directly."
         ],
-        "answer": "Because it is less affected by the size of the keyword vectors",
+        "answer": "Cosine similarity focuses on exact keyword matches, while LDA considers broader research themes.",
         "question_number": 8,
-        "explanation": "Counterfactual-Based: If Emily’s keywords were 'software testing,' Euclidean distance might lower similarity scores for advisors with more publications due to vector magnitude differences, whereas cosine similarity focuses on direction."
+        "explanation": "General: Cosine similarity matches exact keywords (e.g., Nico’s software process, software quality), while LDA groups keywords into topics (e.g., Topic 19) and compares distributions, leading to different top recommendations like Martínez Lastra."
     },
     {
-        "question": "Consider the research interests: [Software Process Improvement, Software System Evolution, Software Quality Assurance, Design Debt, Software Testing, Agile Development]. Emily Zhang’s interests are: [Software Process Improvement, Software System Evolution, Design Debt]. What is her vector representation?",
+        "question": "Eleni Stroulia has a cosine similarity score of 0.8787, which is lower than Nico Zazworka’s 0.9115. What does this imply?",
         "options": [
-            "[1,1,1,0,0,0]",
-            "[1,1,0,1,0,0]",
-            "[0,1,0,1,1,0]",
-            "[1,0,1,0,0,1]"
+            "Eleni Stroulia is not a good match for Emily’s research interests.",
+            "Eleni Stroulia’s research is slightly less aligned with Emily’s interests than Nico’s.",
+            "Eleni Stroulia has no overlapping keywords with Emily.",
+            "Eleni Stroulia’s score indicates a stronger match than Nico Zazworka’s."
         ],
-        "answer": "[1,1,0,1,0,0]",
-        "question_number": 9
+        "answer": "Eleni Stroulia’s research is slightly less aligned with Emily’s interests than Nico’s.",
+        "question_number": 9,
+        "explanation": "Scenario-Specific: A score of 0.8787 is still high, indicating strong alignment, but it is slightly lower than 0.9115, suggesting Nico Zazworka’s keywords are more closely aligned with Emily’s."
     },
     {
-        "question": "Suppose Emily’s research interest vector is: [1,1,0,1,0]. Given advisor vectors: Advisor A: [1,0,1,1,0], Advisor B: [1,1,0,1,1], Advisor C: [0,1,0,1,1], Advisor D: [1,1,0,1,0]. Which advisor is most similar to Emily based on cosine similarity? The system recommends Advisor D because their keywords match exactly.",
+        "question": "If Emily adds 'software architecture' to her keywords, which advisor’s cosine similarity score is likely to increase the most?",
         "options": [
-            "Advisor A",
-            "Advisor B",
-            "Advisor C",
-            "Advisor D"
+            "Nico Zazworka, due to his focus on design debt.",
+            "Shari Lawrence Pfleeger, due to her focus on software reuse.",
+            "Eleni Stroulia, due to her focus on software architecture.",
+            "Jose L. Martínez Lastra, due to his focus on web services."
         ],
-        "answer": "Advisor D",
+        "answer": "Eleni Stroulia, due to her focus on software architecture.",
         "question_number": 10,
-        "explanation": "Feature-Based: Advisor D’s vector [1,1,0,1,0] matches Emily’s exactly, yielding a cosine similarity of 1, as their research interests (software process improvement, software system evolution, design debt) are identical."
+        "explanation": "Counterfactual-Based: Eleni Stroulia’s keywords include 'software architecture,' so adding this keyword to Emily’s list would increase the overlap and likely boost her cosine similarity score significantly."
     },
     {
-        "question": "Suppose Emily’s research interest vector for software engineering is [1,1,0,1] and Advisor X’s vector is [1,1,0,0]. What is the cosine similarity between Emily and Advisor X? If Emily omitted 'design debt,' the similarity might increase.",
+        "question": "What does the high probability (0.8321) of Topic 19 indicate for Emily’s research interests in the LDA topic modeling system?",
         "options": [
-            "0.2",
-            "0",
-            "0.82",
-            "0.87"
+            "Topic 19 is unrelated to Emily’s research keywords like software engineering.",
+            "Topic 19 strongly represents Emily’s interests in software engineering and quality.",
+            "Topic 19 is only relevant to advisors with low cosine similarity scores.",
+            "Topic 19 focuses on hardware-related themes, not software."
         ],
-        "answer": "0.82",
+        "answer": "Topic 19 strongly represents Emily’s interests in software engineering and quality.",
         "question_number": 11,
-        "explanation": "Counterfactual-Based: Cosine similarity is 2/(sqrt(3)*sqrt(2)) ≈ 0.82. If Emily’s vector were [1,1,0,0] (omitting 'design debt'), the similarity with Advisor X would increase to 1.0, as the vectors would be identical."
+        "explanation": "Feature-Based: The high probability (0.8321) for Topic 19, with keywords like 'softwar,' 'develop,' 'process,' 'system,' and 'qualiti,' indicates strong alignment with Emily’s interests in software engineering, software process, and software quality."
     },
     {
-        "question": "In the context of topic similarity search for Emily’s research, what is a 'topic'?",
+        "question": "How is cosine similarity calculated for Emily’s keywords [software engineering, case studies] and Shari Lawrence Pfleeger’s keywords [software engineering, software quality]?",
         "options": [
-            "A specific research paper on design debt",
-            "A set of keywords representing areas like software process improvement or software quality assurance",
-            "The title of Emily’s Ph.D. proposal",
-            "A list of publications by an advisor on software evolution"
+            "By summing the keyword counts and dividing by the total publications.",
+            "By computing the dot product of the vectors [1, 1] and [1, 1] and normalizing by their magnitudes.",
+            "By comparing the publication dates of Emily and Shari’s research.",
+            "By grouping keywords into topics and comparing their distributions."
         ],
-        "answer": "A set of keywords representing areas like software process improvement or software quality assurance",
-        "question_number": 12
+        "answer": "By computing the dot product of the vectors [1, 1] and [1, 1] and normalizing by their magnitudes.",
+        "question_number": 12,
+        "explanation": "Model Inner Working: Cosine similarity is calculated as the dot product of vectors [1, 1] and [1, 1] (1×1 + 1×0 = 1) divided by the product of their magnitudes (√2 × √2 = 2), yielding 0.5 due to partial overlap."
     },
     {
-        "question": "How does Latent Dirichlet Allocation (LDA) help in matching Emily with advisors researching software system evolution? For example, it identifies topics like 'design debt' in advisors’ publications.",
+        "question": "Why does Topic 8 (keywords: control, algorithm, optim, problem, system) have a low probability (0.0901) for Emily’s research interests?",
         "options": [
-            "By classifying software systems into predefined categories",
-            "By calculating the sentiment of software engineering publications",
-            "By predicting the next keyword in Emily’s research description",
-            "By identifying underlying topics in software process improvement and software evolution publications"
+            "Topic 8 focuses on optimization and algorithms, which are less relevant to Emily’s software engineering interests.",
+            "Topic 8 has fewer keywords than Topic 19, reducing its probability.",
+            "Topic 8 is only relevant to advisors with high cosine similarity scores.",
+            "Topic 8 has a higher probability but is unrelated to advisor rankings."
         ],
-        "answer": "By identifying underlying topics in software process improvement and software evolution publications",
+        "answer": "Topic 8 focuses on optimization and algorithms, which are less relevant to Emily’s software engineering interests.",
         "question_number": 13,
-        "explanation": "Feature-Based: LDA extracts topics such as 'design debt' or 'software system evolution' from advisors’ publication data, enabling the system to match Emily with advisors whose topic distributions align with hers."
+        "explanation": "Feature-Based: Topic 8’s keywords (control, algorithm, optim) are less aligned with Emily’s focus on software engineering and quality, resulting in a lower probability (0.0901) compared to Topic 19 (0.8321)."
     },
     {
-        "question": "What type of input data is required for topic similarity search using LDA to match Emily with advisors?",
+        "question": "Why does the recommendation system use both cosine similarity and LDA topic modeling for Emily’s advisor recommendations?",
         "options": [
-            "Numerical data representing software bug counts",
-            "Keywords representing Emily’s and advisors’ interests in software process improvement and design debt",
-            "Images of software architecture diagrams",
-            "Audio recordings of lectures on software quality assurance"
+            "Cosine similarity counts publication frequency, while LDA evaluates citation impact.",
+            "Cosine similarity matches exact keywords, while LDA captures broader research themes.",
+            "Both models produce identical results to confirm advisor rankings.",
+            "LDA uses keyword vectors, while cosine similarity uses topic distributions."
         ],
-        "answer": "Keywords representing Emily’s and advisors’ interests in software process improvement and design debt",
-        "question_number": 14
+        "answer": "Cosine similarity matches exact keywords, while LDA captures broader research themes.",
+        "question_number": 14,
+        "explanation": "General: Cosine similarity compares Emily’s keywords (e.g., software process) directly with advisors’ keywords, while LDA groups keywords into topics (e.g., Topic 19) to match broader research themes, ensuring robust recommendations."
     },
     {
-        "question": "Why is it important to preprocess Emily’s keywords like 'software system evolution' and 'design debt' before applying LDA?",
+        "question": "Which of Emily’s keywords likely contributed least to Eleni Stroulia’s cosine similarity score of 0.8787?",
         "options": [
-            "To reduce noise and irrelevant information in the keyword set",
-            "To correct grammatical errors in publication titles",
-            "To increase the size of the publication dataset",
-            "To ensure all keywords are in uppercase"
+            "Software engineering, as it is common across all advisors.",
+            "Case studies, as it aligns with Eleni’s keywords.",
+            "Software quality, as it is not in Eleni’s keyword list.",
+            "Software process, as it is a niche term."
         ],
-        "answer": "To reduce noise and irrelevant information in the keyword set",
-        "question_number": 15
+        "answer": "Software quality, as it is not in Eleni’s keyword list.",
+        "question_number": 15,
+        "explanation": "Feature-Based: Eleni Stroulia’s keywords include 'software system,' 'software engineering,' and 'case study' but not 'software quality,' so 'software quality' contributes least to her cosine similarity score."
     },
     {
-        "question": "What is the output of the LDA model when recommending advisors for Emily’s software engineering research? For example, it assigns a topic distribution like [0.5, 0.3, 0.2] to an advisor’s profile.",
+        "question": "If Emily replaces 'case studies' with 'artificial intelligence' in her keywords, how might this affect the LDA topic modeling recommendations?",
         "options": [
-            "A single topic label for each of Emily’s keywords",
-            "A ranked list of advisors for Emily based on software engineering topics",
-            "A probability distribution of topics for each publication or profile",
-            "A list of recommended software quality assurance research papers"
+            "Jose L. Martínez Lastra would remain the top recommendation due to his web services focus.",
+            "Topic 19’s relevance would decrease, potentially lowering rankings for advisors tied to it.",
+            "Topic 8 would have a lower probability, as it is unrelated to artificial intelligence.",
+            "Minyi Guo would become the top recommendation due to his energy efficiency focus."
         ],
-        "answer": "A probability distribution of topics for each publication or profile",
+        "answer": "Topic 19’s relevance would decrease, potentially lowering rankings for advisors tied to it.",
         "question_number": 16,
-        "explanation": "Feature-Based: The LDA model outputs topic distributions (e.g., [0.5, 0.3, 0.2] for software process improvement, software system evolution, design debt) for advisors’ profiles, which are compared to Emily’s topic distribution to find matches."
+        "explanation": "Counterfactual-Based: Replacing 'case studies' with 'artificial intelligence' shifts Emily’s topic distribution away from Topic 19 (software-focused) toward AI-related topics, potentially lowering rankings for advisors like Martínez Lastra."
     },
     {
-        "question": "What is a potential challenge when using LDA to match Emily with advisors studying software quality assurance?",
+        "question": "Why is Minyi Guo ranked high (0.9943) in LDA topic modeling but not in the top 3 for cosine similarity?",
         "options": [
-            "LDA requires labeled data for training software engineering topics",
-            "Determining the optimal number of topics for software engineering research",
-            "LDA is only effective with small datasets of software evolution papers",
-            "Ensuring all software engineering keywords are unique"
+            "Minyi Guo’s keywords perfectly match Emily’s keywords.",
+            "Minyi Guo’s topic distribution aligns with Emily’s, but his keywords differ significantly.",
+            "Minyi Guo’s publications have low citation counts.",
+            "Minyi Guo’s research focuses on a niche topic unrelated to Emily’s keywords."
         ],
-        "answer": "Determining the optimal number of topics for software engineering research",
-        "question_number": 17
+        "answer": "Minyi Guo’s topic distribution aligns with Emily’s, but his keywords differ significantly.",
+        "question_number": 17,
+        "explanation": "Scenario-Specific: Minyi Guo’s high LDA score (0.9943) reflects alignment with Topic 19, but his keywords (e.g., energy consumption, transaction management) have low overlap with Emily’s, reducing his cosine similarity rank."
     },
     {
-        "question": "Why is it important to choose an appropriate number of topics in LDA for Emily’s advisor recommendation? If too few topics are chosen, 'design debt' might merge with 'software process improvement.'",
+        "question": "How does the LDA model map Emily’s keywords to topics like Topic 19?",
         "options": [
-            "To ensure the model runs faster for software engineering analysis",
-            "To minimize the number of publications needed",
-            "To balance between specificity (e.g., design debt) and generality (e.g., software engineering)",
-            "To increase the number of keywords in each publication"
+            "By counting the frequency of her keywords in advisor publications.",
+            "By converting her keywords into a numerical vector and calculating cosine similarity.",
+            "By assigning her keywords to predefined topics based on co-occurrence in a trained model.",
+            "By directly matching her keywords to advisor keywords."
         ],
-        "answer": "To balance between specificity (e.g., design debt) and generality (e.g., software engineering)",
+        "answer": "By assigning her keywords to predefined topics based on co-occurrence in a trained model.",
         "question_number": 18,
-        "explanation": "Counterfactual-Based: If only two topics are used, specific areas like 'design debt' might be lumped with 'software process improvement,' reducing the system’s ability to distinguish advisors with precise expertise."
+        "explanation": "Model Inner Working: The LDA model maps Emily’s keywords (e.g., software engineering) to topics like Topic 19 by analyzing their co-occurrence in a trained model, creating a topic distribution for comparison with advisors’ profiles."
     },
     {
-        "question": "How does LDA represent Emily’s research document on software system evolution in the corpus?",
+        "question": "Why was Nico Zazworka ranked first in the cosine similarity model for Emily’s research interests?",
         "options": [
-            "As a single topic like design debt",
-            "As a mixture of topics (e.g., software process improvement, software system evolution) with different proportions",
-            "As a random collection of software-related keywords",
-            "As a sequence of software code snippets"
+            "His topic distribution aligns with Topic 8, which has the highest probability.",
+            "His keywords, like 'software process,' 'software quality,' and 'design debt,' closely match Emily’s.",
+            "He has the most publications in the database.",
+            "His keywords focus on artificial intelligence, aligning with Emily’s interests."
         ],
-        "answer": "As a mixture of topics (e.g., software process improvement, software system evolution) with different proportions",
-        "question_number": 19
+        "answer": "His keywords, like 'software process,' 'software quality,' and 'design debt,' closely match Emily’s.",
+        "question_number": 19,
+        "explanation": "Scenario-Specific: Nico Zazworka’s keywords (e.g., software process, software quality, design debt) closely overlap with Emily’s (e.g., software engineering, software process, software quality), resulting in a high cosine similarity score of 0.9115."
     },
     {
-        "question": "If LDA identifies that Emily’s research document has a topic proportion of [0.6, 0.2, 0.2] for topics related to software process improvement, software system evolution, and design debt, what can be inferred? The system prioritizes advisors with high 'software process improvement' topic scores.",
+        "question": "If Emily adds 'software evolution' to her keywords, which advisor’s cosine similarity score is likely to increase the most?",
         "options": [
-            "Emily is mostly interested in the software process improvement topic",
-            "Emily has equal interest in all software-related topics",
-            "Emily is least interested in the software process improvement topic",
-            "Emily’s interests are not related to any identified topics"
+            "Shari Lawrence Pfleeger, due to her focus on software reuse.",
+            "Nico Zazworka, due to his focus on software evolution.",
+            "Eleni Stroulia, due to her focus on software architecture.",
+            "Steffen Oeltze, due to his focus on perfusion data."
         ],
-        "answer": "Emily is mostly interested in the software process improvement topic",
+        "answer": "Nico Zazworka, due to his focus on software evolution.",
         "question_number": 20,
-        "explanation": "Feature-Based: The high proportion (0.6) for 'software process improvement' indicates Emily’s primary interest, so the system recommends advisors with similar topic distributions."
-    },
-    {
-        "question": "Emily’s topic distribution is [0.25, 0.25, 0.5] for software process improvement, software system evolution, and design debt. Which advisor’s topic distribution is the best match? If Emily’s distribution were [0.1, 0.1, 0.8], the best match might differ.",
-        "options": [
-            "[0.2, 0.8, 0.5]",
-            "[0.4, 0.4, 0.2]",
-            "[0.1, 0.5, 0.4]",
-            "[0.3, 0.2, 0.5]"
-        ],
-        "answer": "[0.3, 0.2, 0.5]",
-        "question_number": 21,
-        "explanation": "Counterfactual-Based: The advisor with [0.3, 0.2, 0.5] is closest to Emily’s [0.25, 0.25, 0.5], especially in the dominant 'design debt' topic. If Emily’s distribution were [0.1, 0.1, 0.8], an advisor with a higher 'design debt' proportion (e.g., [0.2, 0.8, 0.5]) might be preferred."
-    },
-    {
-        "question": "If a keyword like 'design debt' has a topic distribution of [0.3, 0.4, 0.3] across software process improvement, software system evolution, and design debt, and appears 10 times in Emily’s document, how many times is it expected to belong to the 'software system evolution' topic?",
-        "options": [
-            "3",
-            "4",
-            "5",
-            "6"
-        ],
-        "answer": "4",
-        "question_number": 22,
-        "explanation": "Feature-Based: The keyword’s 0.4 proportion for 'software system evolution' means 0.4 * 10 = 4 occurrences are expected to belong to that topic."
+        "explanation": "Counterfactual-Based: Adding 'software evolution' increases overlap with Nico Zazworka’s keywords (e.g., software evolution, software process), likely boosting his cosine similarity score the most."
     }
 ]
     elif who=='David Chen':
@@ -1136,6 +1122,7 @@ if st.session_state.page == "home":
 elif st.session_state.page == "quiz":
     run_quiz()
     
+
 
 
 
