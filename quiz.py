@@ -1023,7 +1023,7 @@ if st.session_state.page == "home":
     username = st.text_input("Enter your name")
 
     if st.button("Start Quiz"):
-        st.session_state.page = "post_quiz"
+        st.session_state.page = "quiz"
         questions = load_questions(selected_user)
         st.session_state.shuffled_questions = questions
         st.session_state["selected_user"] = selected_user
@@ -1113,8 +1113,7 @@ if st.session_state.page == "post_quiz":
          #   st.error("Please answer all questions before submitting.")
         #else:
             st.write("Thank you for Submitting the Survey")
-            st.session_state.page  = "post_quiz"
-            st.rerun()
+            
 
 
 
@@ -1182,9 +1181,10 @@ if st.session_state.page == "quiz":
         #connection.commit()
         #cursor.close()
         #connection.close()
-        if st.button("Go To Survey"):
+        if st.button("Survey"):
             st.session_state.page  = "post_quiz"
             st.rerun()
+
 
 
 
