@@ -1172,10 +1172,11 @@ if st.session_state.page == "home":
         st.session_state["selected_user"] = selected_user
         st.session_state["username"] = username.strip()
         st.rerun()
-elif st.session_state.page == "quiz":
+if st.session_state.page == "quiz":
     run_quiz()
-elif st.session_state.page == "post_quiz":
+if st.session_state.page == "post_quiz":
     run_post_quiz()
+
 
 
 
