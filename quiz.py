@@ -1007,73 +1007,30 @@ def load_questions(who):
 
 
 def run_quiz():
-    questions = st.session_state.shuffled_questions
-    st.title("Quiz")
-    st.write(f"**User**: {st.session_state["username"]}")
-    st.write(f"**Scenario**: {st.session_state["selected_user"]}")
-    st.write("----------------------------------------------------")
-    
-
-
-    user_answers = []
-    correct_count = 0
-
-    for i, question in enumerate(questions):
-        st.write(f"Q{i+1}: {question['question']}")
-
-        user_answer = st.radio(
-            "Choose your answer:",
-            question["options"],
-            index=None,  # No option selected initially
-            key=f"question_{i}"
-        )
-        user_answers.append(user_answer)
-        
-    #name=st.text_input('Name: ')
-    #attempt_num=st.text_input('Attempt Number:')
-    #connection = connect_to_db()
-    #cursor = connection.cursor()
-    if st.button("Submit"):
-        for i, question in enumerate(questions):
-            if user_answers[i] == question['answer']:
-                correct_count += 1
-                st.write(f"Q{i+1}: {question['question']}")
-                st.success(f"Your answer: {user_answers[i]}", icon="✔")
-            else:
-                st.write(f"Q{i+1}: {question['question']}")
-                st.error(f"Your answer: {user_answers[i]}", icon="❌")
-
-        total_questions = len(questions)
-        score_percentage = (correct_count / total_questions) * 100
-        #cursor.execute("INSERT INTO QuizAttempts (user_id, attempt_number, final_score) VALUES (%s, %s, %s)", (name, attempt_num, correct_count))
-        #attempt_id=cursor.lastrowid
-        #for i, question in enumerate(questions):
-        #    cursor.execute("INSERT INTO AttemptDetails (attempt_id, question_number, chosen_option, is_correct) VALUES (%s, %s, %s, %s)",
-        #          (attempt_id, question['question_number'], user_answers[i], user_answers[i] == question['answer']))
-        
-        
-        # Display score percentage bar
-        fig, ax = plt.subplots(figsize=(8, 1))
-        ax.barh(0, score_percentage, color='green', height=0.5)
-        ax.barh(0, 100 - score_percentage, left=score_percentage, color='red', height=0.5)
-        ax.set_xlim(0, 100)
-        ax.axis('off')
-
-        # Annotate the percentage under the bar
-        plt.text(50, -0.3, f"Score: {score_percentage:.2f}%", ha='center', va='center', fontsize=12)
-
-        st.pyplot(fig)
-
-        st.write(f"Your raw score is: {correct_count}/{total_questions}")
-        st.write(f"Your percentile score is: {score_percentage:.2f}%")
-        #connection.commit()
-        #cursor.close()
-        #connection.close()
-        if st.button("Go To Survey"):
-            st.session_state.page = "post_quiz"
-            st.rerun()
+    pass
 
 def run_post_quiz():
+   pass
+
+# Run the quiz
+if "page" not in st.session_state:
+    st.session_state.page = "home"
+
+if st.session_state.page == "home":
+    st.title("Student Advisor Recommender System Quiz")
+    user_names=['Emily Zhang', 'Amina Rahman','David Chen', 'Sara Lee']
+    selected_user = st.selectbox("Select a student scenario", user_names)
+    username = st.text_input("Enter your name")
+
+    if st.button("Start Quiz"):
+        st.session_state.page = "quiz"
+        questions = load_questions(selected_user)
+        st.session_state.shuffled_questions = questions
+        st.session_state["selected_user"] = selected_user
+        st.session_state["username"] = username.strip()
+        st.rerun()
+
+if st.session_state.page == "post_quiz":
     username = st.session_state.get("username", "anonymous")
     st.markdown("### Post Quiz Survey")
     st.markdown("---")
@@ -1155,31 +1112,75 @@ def run_post_quiz():
         #else:
             st.write("Thank you for Submitting the Survey")
 
-# Run the quiz
-if "page" not in st.session_state:
-    st.session_state.page = "home"
 
-if st.session_state.page == "home":
-    st.title("Student Advisor Recommender System Quiz")
-    user_names=['Emily Zhang', 'Amina Rahman','David Chen', 'Sara Lee']
-    selected_user = st.selectbox("Select a student scenario", user_names)
-    username = st.text_input("Enter your name")
 
-    if st.button("Start Quiz"):
-        st.session_state.page = "quiz"
-        questions = load_questions(selected_user)
-        st.session_state.shuffled_questions = questions
-        st.session_state["selected_user"] = selected_user
-        st.session_state["username"] = username.strip()
-        st.rerun()
+
 if st.session_state.page == "quiz":
-    run_quiz()
-if st.session_state.page == "post_quiz":
-    run_post_quiz()
+    questions = st.session_state.shuffled_questions
+    st.title("Quiz")
+    st.write(f"**User**: {st.session_state["username"]}")
+    st.write(f"**Scenario**: {st.session_state["selected_user"]}")
+    st.write("----------------------------------------------------")
+    
 
 
+    user_answers = []
+    correct_count = 0
 
+    for i, question in enumerate(questions):
+        st.write(f"Q{i+1}: {question['question']}")
 
+        user_answer = st.radio(
+            "Choose your answer:",
+            question["options"],
+            index=None,  # No option selected initially
+            key=f"question_{i}"
+        )
+        user_answers.append(user_answer)
+        
+    #name=st.text_input('Name: ')
+    #attempt_num=st.text_input('Attempt Number:')
+    #connection = connect_to_db()
+    #cursor = connection.cursor()
+    if st.button("Submit"):
+        for i, question in enumerate(questions):
+            if user_answers[i] == question['answer']:
+                correct_count += 1
+                st.write(f"Q{i+1}: {question['question']}")
+                st.success(f"Your answer: {user_answers[i]}", icon="✔")
+            else:
+                st.write(f"Q{i+1}: {question['question']}")
+                st.error(f"Your answer: {user_answers[i]}", icon="❌")
+
+        total_questions = len(questions)
+        score_percentage = (correct_count / total_questions) * 100
+        #cursor.execute("INSERT INTO QuizAttempts (user_id, attempt_number, final_score) VALUES (%s, %s, %s)", (name, attempt_num, correct_count))
+        #attempt_id=cursor.lastrowid
+        #for i, question in enumerate(questions):
+        #    cursor.execute("INSERT INTO AttemptDetails (attempt_id, question_number, chosen_option, is_correct) VALUES (%s, %s, %s, %s)",
+        #          (attempt_id, question['question_number'], user_answers[i], user_answers[i] == question['answer']))
+        
+        
+        # Display score percentage bar
+        fig, ax = plt.subplots(figsize=(8, 1))
+        ax.barh(0, score_percentage, color='green', height=0.5)
+        ax.barh(0, 100 - score_percentage, left=score_percentage, color='red', height=0.5)
+        ax.set_xlim(0, 100)
+        ax.axis('off')
+
+        # Annotate the percentage under the bar
+        plt.text(50, -0.3, f"Score: {score_percentage:.2f}%", ha='center', va='center', fontsize=12)
+
+        st.pyplot(fig)
+
+        st.write(f"Your raw score is: {correct_count}/{total_questions}")
+        st.write(f"Your percentile score is: {score_percentage:.2f}%")
+        #connection.commit()
+        #cursor.close()
+        #connection.close()
+        if st.button("Go To Survey"):
+            st.session_state.page = "post_quiz"
+            st.rerun()
 
 
 
