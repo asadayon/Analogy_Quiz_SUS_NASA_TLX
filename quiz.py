@@ -1077,6 +1077,7 @@ if st.session_state.page == "post_quiz":
     for idx,q in enumerate (st.session_state.post_quiz_questions):
 
         question = q
+        print(question)
         qid = idx
         
         st.markdown(f"**Q{idx+1}. {question}**")
@@ -1179,8 +1180,9 @@ if st.session_state.page == "quiz":
         #cursor.close()
         #connection.close()
         if st.button("Go To Survey"):
-            st.session_state.page = "post_quiz"
+            st.session_state.page  = "post_quiz"
             st.rerun()
+
 
 
 
