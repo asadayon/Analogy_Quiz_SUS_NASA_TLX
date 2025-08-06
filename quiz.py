@@ -1056,7 +1056,7 @@ def run_quiz():
     st.title("Quiz")
     st.write(f"**User**: {st.session_state["username"]}")
     st.write(f"**Scenario**: {st.session_state["selected_user"]}")
-    st.write("_____________________________________________________")
+    st.write("----------------------------------------------------")
     
 
 
@@ -1136,6 +1136,7 @@ if st.session_state.page == "home":
 elif st.session_state.page == "quiz":
     run_quiz()
     
+
 
 
 
