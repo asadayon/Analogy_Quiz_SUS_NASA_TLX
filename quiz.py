@@ -1023,7 +1023,7 @@ if st.session_state.page == "home":
     username = st.text_input("Enter your name")
 
     if st.button("Start Quiz"):
-        st.session_state.page = "quiz"
+        st.session_state.page = "post_quiz"
         questions = load_questions(selected_user)
         st.session_state.shuffled_questions = questions
         st.session_state["selected_user"] = selected_user
@@ -1182,6 +1182,7 @@ if st.session_state.page == "quiz":
         if st.button("Go To Survey"):
             st.session_state.page  = "post_quiz"
             st.rerun()
+
 
 
 
