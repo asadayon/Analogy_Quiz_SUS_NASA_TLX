@@ -4,6 +4,17 @@ import matplotlib.pyplot as plt
 #import mysql.connector
 #from mysql.connector import Error
 
+def load_survey():
+    return [
+    "I can identify appropriate advisors for my research interests based on the system’s explanations.",
+    "The system’s explanations help me judge how trustworthy the advisor recommendations are.",
+    "The system’s explanations help me understand how my research interests influence the advisor recommendations.",
+    "I can identify cases where the system’s advisor recommendations might be less relevant or incorrect.",
+    "The system’s explanations of how recommendations are generated (e.g., keyword matching and topic modeling) are clear and easy to understand.",
+    "The system’s explanations help me understand why specific advisors were recommended for my research interests.",
+    "I feel confident in using the system’s recommendations to make decisions about selecting an advisor."
+]
+
 def load_questions(who):
     if who=='Amina Rahman':
         return [
@@ -1080,6 +1091,7 @@ if st.session_state.page == "home":
 elif st.session_state.page == "quiz":
     run_quiz()
     
+
 
 
 
