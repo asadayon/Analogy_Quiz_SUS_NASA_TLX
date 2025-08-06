@@ -494,258 +494,244 @@ def load_questions(who):
     elif who=='David Chen':
         return [
     {
-        "question": "How can text similarity-based models be used in an advisor recommender system for David Chen’s research interests?",
+        "question": "What is the primary purpose of the cosine similarity model in the advisor recommendation system for David Chen’s research interests?",
         "options": [
-            "By analyzing personality traits of David and advisors to find the best match",
-            "By comparing textual descriptions of autonomous robot and multi-robot system interests from David and advisors to find the best alignment",
-            "By ranking advisors based on their publication count in rescue robotics",
-            "By considering the geographical location of David and advisors for recommendations"
+            "To group keywords into topics for matching advisors",
+            "To compare the direction of David’s and advisors’ keyword vectors",
+            "To predict advisors’ research output based on David’s keywords",
+            "To calculate the probability of topics in David’s inputs"
         ],
-        "answer": "By comparing textual descriptions of autonomous robot and multi-robot system interests from David and advisors to find the best alignment",
-        "question_number": 1
+        "answer": "To compare the direction of David’s and advisors’ keyword vectors",
+        "question_number": 1,
+        "explanation": "Feature-Based: Cosine similarity measures the angle between David’s keyword vector (e.g., rescue robot, autonomous mobile robot) and advisors’ vectors to find alignment."
     },
     {
-        "question": "What is the primary goal of using cosine similarity in an advisor recommendation system for David Chen’s research? For example, if David’s keywords include 'autonomous robots' and 'multi-robot systems,' the system identifies advisors with similar keywords in their profiles.",
+        "question": "How does the LDA topic modeling approach contribute to the advisor recommendation system for David Chen?",
         "options": [
-            "To find the shortest path between rescue robotics topics",
-            "To measure the similarity between David’s keywords (e.g., autonomous robots, multi-robot systems) and advisors’ research profiles",
-            "To classify rescue robot techniques into predefined categories",
-            "To generate random advisor-student pairings for tele-operation research"
+            "It calculates exact keyword matches between David and advisors",
+            "It groups keywords into research themes and compares topic distributions",
+            "It ranks advisors based on their publication count",
+            "It converts David’s keywords into numerical vectors for cosine similarity"
         ],
-        "answer": "To measure the similarity between David’s keywords (e.g., autonomous robots, multi-robot systems) and advisors’ research profiles",
+        "answer": "It groups keywords into research themes and compares topic distributions",
         "question_number": 2,
-        "explanation": "Feature-Based: The system recommends advisors whose publication keywords (e.g., 'autonomous robots,' 'multi-robot systems') closely match David’s, as measured by cosine similarity."
+        "explanation": "Model Inner Working: LDA identifies topics like Topic 22 (mobil, robot, autonom) and matches David’s topic distribution to advisors’ profiles."
     },
     {
-        "question": "How is cosine similarity calculated between two vectors representing David’s and an advisor’s research interests in rescue robotics?",
+        "question": "Why does the system use both cosine similarity and LDA topic modeling for David Chen’s advisor recommendations?",
         "options": [
-            "By adding the magnitudes of the two vectors",
-            "By finding the difference between the two vectors",
-            "By dividing the dot product of the vectors by the product of their magnitudes",
-            "By calculating the Euclidean distance between the vectors"
+            "To increase computational complexity",
+            "To provide a robust match by combining keyword and thematic alignment",
+            "To reduce the number of recommended advisors",
+            "To prioritize advisors with the most publications"
         ],
-        "answer": "By dividing the dot product of the vectors by the product of their magnitudes",
-        "question_number": 3
+        "answer": "To provide a robust match by combining keyword and thematic alignment",
+        "question_number": 3,
+        "explanation": "General: Combining cosine similarity (exact keyword matches) and LDA (thematic alignment) ensures a comprehensive recommendation for David’s interests."
     },
     {
-        "question": "Which of the following is true about cosine similarity when used for matching David’s interest in multi-robot systems with advisors? For instance, if David’s keywords are longer than an advisor’s, cosine similarity still compares their alignment effectively.",
+        "question": "What does a cosine similarity score of 0.9011 for Fumitoshi Matsuno indicate for David Chen?",
         "options": [
-            "It only works with binary data",
-            "It ranges from -1 to 1, where 1 means completely dissimilar",
-            "It is not affected by the length of the keyword vectors",
-            "It is computationally intensive and not suitable for large datasets"
+            "No alignment with David’s research interests",
+            "A moderate level of keyword overlap",
+            "A strong alignment with David’s keyword vector",
+            "Exactly 90.11% of David’s keywords match"
         ],
-        "answer": "It is not affected by the length of the keyword vectors",
+        "answer": "A strong alignment with David’s keyword vector",
         "question_number": 4,
-        "explanation": "Feature-Based: Cosine similarity focuses on the angle between vectors, so it effectively compares David’s keywords (e.g., 'multi-robot systems,' 'tele-operation') with advisors’ profiles regardless of vector length."
+        "explanation": "Scenario-Specific: A score of 0.9011 shows strong alignment between David’s keywords (e.g., rescue robot) and Matsuno’s profile."
     },
     {
-        "question": "Why is it important to preprocess David’s research keywords (e.g., 'autonomous robots,' 'multi-robot systems,' 'tele-operation') before applying cosine similarity?",
+        "question": "How is David Chen’s research interest represented in the cosine similarity model?",
         "options": [
-            "To increase the complexity of the algorithm",
-            "To ensure keywords are in a uniform format for accurate comparison",
-            "To reduce the dimensionality of the vectors",
-            "To encrypt the data for security"
+            "As a probability distribution over 30 topics",
+            "As a numerical count vector of keywords",
+            "As a list of advisor publication titles",
+            "As a weighted sum of advisor profiles"
         ],
-        "answer": "To ensure keywords are in a uniform format for accurate comparison",
-        "question_number": 5
+        "answer": "As a numerical count vector of keywords",
+        "question_number": 5,
+        "explanation": "Model Inner Working: David’s keywords (e.g., [rescue robot, autonomous mobile robot]) are converted to a vector like [1, 1, 0, …]."
     },
     {
-        "question": "Which preprocessing step is commonly applied to David’s research keywords before computing cosine similarity for advisor recommendations?",
+        "question": "What is a key difference between cosine similarity and LDA topic modeling in David Chen’s recommendation system?",
         "options": [
-            "Tokenization of terms like 'multi-robot systems'",
-            "Vector normalization of keyword counts",
-            "Stop word removal from research descriptions",
-            "All of the above"
+            "Cosine similarity uses topics, while LDA uses exact keywords",
+            "Cosine similarity compares keyword vectors, while LDA compares topic distributions",
+            "Cosine similarity is probabilistic, while LDA is deterministic",
+            "Cosine similarity ranks advisors, while LDA does not"
         ],
-        "answer": "All of the above",
-        "question_number": 6
+        "answer": "Cosine similarity compares keyword vectors, while LDA compares topic distributions",
+        "question_number": 6,
+        "explanation": "General: Cosine similarity focuses on exact keyword matches, while LDA groups keywords into themes like Topic 22 for matching."
     },
     {
-        "question": "What does a cosine similarity score of 1 indicate when matching David’s interest in autonomous robots with an advisor? For example, if David’s keywords exactly match an advisor’s, the system recommends that advisor as a perfect fit.",
+        "question": "Which of David Chen’s keywords likely contributed most to Fumitoshi Matsuno’s top cosine similarity ranking?",
         "options": [
-            "David’s and the advisor’s research interests in autonomous robots are identical",
-            "David’s and the advisor’s research interests are completely different",
-            "David’s and the advisor’s research interests are orthogonal",
-            "The cosine similarity score is invalid for this context"
+            "Software engineering",
+            "Neural network",
+            "Rescue robot",
+            "Topological space"
         ],
-        "answer": "David’s and the advisor’s research interests in autonomous robots are identical",
+        "answer": "Rescue robot",
         "question_number": 7,
-        "explanation": "Feature-Based: A score of 1 means the advisor’s publications have the same keywords (e.g., 'autonomous robots,' 'multi-robot systems') as David’s input, indicating a perfect alignment."
+        "explanation": "Feature-Based: Matsuno’s keywords (e.g., rescue robot, tele-operation mode) directly match David’s, driving his high score of 0.9011."
     },
     {
-        "question": "Why might cosine similarity be preferred over Euclidean distance for matching David’s rescue robotics interests with advisors? If David’s keywords were 'robot navigation' instead, Euclidean distance might penalize advisors with more publications.",
+        "question": "Why does Tamio Arai rank second in the cosine similarity model for David Chen?",
         "options": [
-            "Because it is less affected by the size of the keyword vectors",
-            "Because it considers the absolute positions of keywords",
-            "Because it only works with large datasets of rescue robotics research",
-            "Because it is easier to interpret than other measures"
+            "His keywords include unrelated terms like software process",
+            "His keywords have less overlap with David’s than Matsuno’s",
+            "His topic distribution is less aligned with Topic 22",
+            "His similarity score is higher than Matsuno’s"
         ],
-        "answer": "Because it is less affected by the size of the keyword vectors",
+        "answer": "His keywords have less overlap with David’s than Matsuno’s",
         "question_number": 8,
-        "explanation": "Counterfactual-Based: If David’s keywords were 'robot navigation,' Euclidean distance might lower similarity scores for advisors with more publications due to vector magnitude differences, whereas cosine similarity focuses on direction."
+        "explanation": "Feature-Based: Arai’s keywords (e.g., mobile robot) overlap but lack specific terms like rescue robot, leading to a lower score (0.7654)."
     },
     {
-        "question": "Consider the research interests: [Autonomous Robots, Multi-Robot Systems, Tele-Operation, Robot Navigation, Swarm Robotics, Disaster Response]. David Chen’s interests are: [Autonomous Robots, Multi-Robot Systems, Tele-Operation]. What is his vector representation?",
+        "question": "Which keyword likely contributed to Michita Imai’s third rank in the cosine similarity model?",
         "options": [
-            "[1,1,1,0,0,0]",
-            "[1,1,0,1,0,0]",
-            "[0,1,0,1,1,0]",
-            "[1,0,1,0,0,1]"
+            "Rescue robot",
+            "Robot system",
+            "Neural network",
+            "Software quality"
         ],
-        "answer": "[1,1,1,0,0,0]",
-        "question_number": 9
+        "answer": "Robot system",
+        "question_number": 9,
+        "explanation": "Feature-Based: Imai’s keywords like robot system align with David’s, but terms like humanoid robot reduce relevance, yielding a score of 0.75."
     },
     {
-        "question": "Suppose David’s research interest vector is: [1,1,1,0,0]. Given advisor vectors: Advisor A: [1,0,1,1,0], Advisor B: [1,1,1,0,1], Advisor C: [0,1,0,1,1], Advisor D: [1,1,1,0,0]. Which advisor is most similar to David based on cosine similarity? The system recommends Advisor D because their keywords match exactly.",
+        "question": "Why is Reinhold Heckmann recommended by the LDA model despite no direct keyword overlap with David Chen’s interests?",
         "options": [
-            "Advisor A",
-            "Advisor B",
-            "Advisor C",
-            "Advisor D"
+            "His publications have the highest word count",
+            "His topic distribution aligns with Topic 22 (mobil, robot, autonom)",
+            "His cosine similarity score is higher than Matsuno’s",
+            "He has more publications than other advisors"
         ],
-        "answer": "Advisor D",
+        "answer": "His topic distribution aligns with Topic 22 (mobil, robot, autonom)",
         "question_number": 10,
-        "explanation": "Feature-Based: Advisor D’s vector [1,1,1,0,0] matches David’s exactly, yielding a cosine similarity of 1, as their research interests (autonomous robots, multi-robot systems, tele-operation) are identical."
+        "explanation": "Scenario-Specific: Heckmann’s high LDA score (0.9888) reflects thematic alignment with Topic 22, relevant to David’s interests."
     },
     {
-        "question": "Suppose David’s research interest vector for rescue robotics is [1,1,1,0] and Advisor X’s vector is [1,1,0,1]. What is the cosine similarity between David and Advisor X? If David omitted 'tele-operation,' the similarity might increase.",
+        "question": "If David Chen adds ‘humanoid robot’ to his keywords, who is likely to rank highest in the cosine similarity model?",
         "options": [
-            "0.2",
-            "0",
-            "0.67",
-            "0.87"
+            "Fumitoshi Matsuno",
+            "Tamio Arai",
+            "Michita Imai",
+            "Reinhold Heckmann"
         ],
-        "answer": "0.67",
+        "answer": "Michita Imai",
         "question_number": 11,
-        "explanation": "Counterfactual-Based: Cosine similarity is 2/(sqrt(3)*sqrt(3)) ≈ 0.67. If David’s vector were [1,1,0,0] (omitting 'tele-operation'), the similarity with Advisor X would increase to 0.82, as fewer differences exist."
+        "explanation": "Counterfactual-Based: Adding ‘humanoid robot’ aligns with Imai’s keywords, likely increasing his score above Matsuno’s."
     },
     {
-        "question": "In the context of topic similarity search for David’s research, what is a 'topic'?",
+        "question": "If David Chen removes ‘rescue robot’ from his keywords, what is the likely impact on the cosine similarity rankings?",
         "options": [
-            "A specific research paper on rescue robots",
-            "A set of keywords representing areas like autonomous robots or multi-robot systems",
-            "The title of David’s Ph.D. proposal",
-            "A list of publications by an advisor on disaster response"
+            "Matsuno’s score will remain unchanged",
+            "Matsuno’s score will decrease, possibly dropping his rank",
+            "Imai’s score will increase significantly",
+            "Arai’s score will become the highest"
         ],
-        "answer": "A set of keywords representing areas like autonomous robots or multi-robot systems",
-        "question_number": 12
+        "answer": "Matsuno’s score will decrease, possibly dropping his rank",
+        "question_number": 12,
+        "explanation": "Counterfactual-Based: Removing ‘rescue robot’ reduces overlap with Matsuno’s profile, lowering his score."
     },
     {
-        "question": "How does Latent Dirichlet Allocation (LDA) help in matching David with advisors researching multi-robot systems? For example, it identifies topics like 'autonomous navigation' in advisors’ publications.",
+        "question": "If David Chen emphasizes ‘neural network’ in his keywords, who might rank higher in the LDA model?",
         "options": [
-            "By classifying robots into predefined categories",
-            "By calculating the sentiment of rescue robotics publications",
-            "By predicting the next keyword in David’s research description",
-            "By identifying underlying topics in autonomous robots and multi-robot system publications"
+            "Fumitoshi Matsuno",
+            "Tamio Arai",
+            "Kil To Chong",
+            "Michita Imai"
         ],
-        "answer": "By identifying underlying topics in autonomous robots and multi-robot system publications",
+        "answer": " Kil To Chong",
         "question_number": 13,
-        "explanation": "Feature-Based: LDA extracts topics such as 'autonomous navigation' or 'multi-robot systems' from advisors’ publication data, enabling the system to match David with advisors whose topic distributions align with his."
+        "explanation": "Counterfactual-Based: Chong’s keywords (e.g., neural network) align with a topic distribution that would increase his LDA score."
     },
     {
-        "question": "What type of input data is required for topic similarity search using LDA to match David with advisors?",
+        "question": "If David Chen shifts his keywords to ‘software engineering,’ who might rank higher in the LDA model?",
         "options": [
-            "Numerical data representing robot sensor readings",
-            "Keywords representing David’s and advisors’ interests in autonomous robots and tele-operation",
-            "Images of rescue robots",
-            "Audio recordings of lectures on disaster response"
+            "Heckmann’s ranking would decrease",
+            "Zazworka’s ranking would increase",
+            "Chong’s ranking would become the highest",
+            "Matsuno would be recommended by LDA"
         ],
-        "answer": "Keywords representing David’s and advisors’ interests in autonomous robots and tele-operation",
-        "question_number": 14
+        "answer": "Zazworka’s ranking would increase",
+        "question_number": 14,
+        "explanation": "Counterfactual-Based: Zazworka’s keywords (e.g., software engineering) align with a topic distribution matching the new emphasis."
     },
     {
-        "question": "Why is it important to preprocess David’s keywords like 'multi-robot systems' and 'tele-operation' before applying LDA?",
+        "question": "How is David Chen’s keyword list [rescue robot, autonomous mobile robot, tele-operation mode] represented in the cosine similarity model?",
         "options": [
-            "To reduce noise and irrelevant information in the keyword set",
-            "To correct grammatical errors in publication titles",
-            "To increase the size of the publication dataset",
-            "To ensure all keywords are in uppercase"
+            "As a probability distribution over 30 topics",
+            "As a vector like [1, 1, 1, 0, …] based on keyword presence",
+            "As a list of topic probabilities",
+            "As a weighted sum of advisor keywords"
         ],
-        "answer": "To reduce noise and irrelevant information in the keyword set",
-        "question_number": 15
+        "answer": "As a vector like [1, 1, 1, 0, …] based on keyword presence",
+        "question_number": 15,
+        "explanation": "Model Inner Working: Keywords are converted to a vector where 1 indicates presence (e.g., rescue robot) and 0 indicates absence."
     },
     {
-        "question": "What is the output of the LDA model when recommending advisors for David’s rescue robotics research? For example, it assigns a topic distribution like [0.5, 0.3, 0.2] to an advisor’s profile.",
+        "question": "What does the dot product in cosine similarity calculate for David Chen’s keywords and Matsuno’s profile?",
         "options": [
-            "A single topic label for each of David’s keywords",
-            "A ranked list of advisors for David based on rescue robotics topics",
-            "A probability distribution of topics for each publication or profile",
-            "A list of recommended disaster response research papers"
+            "The sum of matching keyword counts",
+            "The total number of keywords in both profiles",
+            "The product of topic probabilities",
+            "The Euclidean distance between vectors"
         ],
-        "answer": "A probability distribution of topics for each publication or profile",
+        "answer": "The sum of matching keyword counts",
         "question_number": 16,
-        "explanation": "Feature-Based: The LDA model outputs topic distributions (e.g., [0.5, 0.3, 0.2] for autonomous robots, multi-robot systems, tele-operation) for advisors’ profiles, which are compared to David’s topic distribution to find matches."
+        "explanation": "Model Inner Working: The dot product sums the product of corresponding vector elements, reflecting shared keywords."
     },
     {
-        "question": "What is a potential challenge when using LDA to match David with advisors studying autonomous robots?",
+        "question": "For a simplified example with David’s keywords [rescue robot, mobile robot] and Matsuno’s vector [1, 1], what is the cosine similarity if vectors are identical?",
         "options": [
-            "LDA requires labeled data for training rescue robotics topics",
-            "Determining the optimal number of topics for rescue robotics research",
-            "LDA is only effective with small datasets of disaster response papers",
-            "Ensuring all rescue robotics keywords are unique"
+            "0",
+            "0.5",
+            "1",
+            "2"
         ],
-        "answer": "Determining the optimal number of topics for rescue robotics research",
-        "question_number": 17
+        "answer": "1",
+        "question_number": 17,
+        "explanation": "Model Inner Working: Identical vectors (e.g., [1, 1] and [1, 1]) yield a cosine similarity of 1, indicating perfect alignment."
     },
     {
-        "question": "Why is it important to choose an appropriate number of topics in LDA for David’s advisor recommendation? If too few topics are chosen, 'multi-robot systems' might merge with 'autonomous robots.'",
+        "question": "How is Topic 22 (mobil, robot, autonom, system) used in the LDA model for David Chen’s recommendations?",
         "options": [
-            "To ensure the model runs faster for rescue robotics analysis",
-            "To minimize the number of publications needed",
-            "To balance between specificity (e.g., multi-robot systems) and generality (e.g., rescue robotics)",
-            "To increase the number of keywords in each publication"
+            "By counting exact matches of ‘mobil’ and ‘robot’",
+            "By comparing David’s topic probability (0.7871) to advisor profiles",
+            "By calculating cosine similarity of topic keywords",
+            "By ranking advisors based on publication counts in Topic 22"
         ],
-        "answer": "To balance between specificity (e.g., multi-robot systems) and generality (e.g., rescue robotics)",
+        "answer": "By comparing David’s topic probability (0.7871) to advisor profiles",
         "question_number": 18,
-        "explanation": "Counterfactual-Based: If only two topics are used, specific areas like 'multi-robot systems' might be lumped with 'autonomous robots,' reducing the system’s ability to distinguish advisors with precise expertise."
+        "explanation": "Model Inner Working: LDA compares David’s high probability for Topic 22 with advisors’ topic distributions."
     },
     {
-        "question": "How does LDA represent David’s research document on multi-robot systems in the corpus?",
+        "question": "Why is Fumitoshi Matsuno the top recommended advisor in the cosine similarity model for David Chen?",
         "options": [
-            "As a single topic like tele-operation",
-            "As a mixture of topics (e.g., autonomous robots, multi-robot systems) with different proportions",
-            "As a random collection of robot-related keywords",
-            "As a sequence of robot sensor data"
+            "His keywords include software engineering and neural network",
+            "His keywords like rescue robot and tele-operation mode match David’s",
+            "His topic distribution has the highest probability for Topic 8",
+            "His similarity score is lower than Arai’s but more relevant"
         ],
-        "answer": "As a mixture of topics (e.g., autonomous robots, multi-robot systems) with different proportions",
-        "question_number": 19
+        "answer": "His keywords like rescue robot and tele-operation mode match David’s",
+        "question_number": 19,
+        "explanation": "Scenario-Specific: Matsuno’s keywords directly match David’s, resulting in a high score of 0.9011."
     },
     {
-        "question": "If LDA identifies that David’s research document has a topic proportion of [0.6, 0.2, 0.2] for topics related to autonomous robots, multi-robot systems, and tele-operation, what can be inferred? The system prioritizes advisors with high 'autonomous robots' topic scores.",
+        "question": "What does Reinhold Heckmann’s high LDA score (0.9888) indicate for David Chen’s recommendation?",
         "options": [
-            "David is mostly interested in the autonomous robots topic",
-            "David has equal interest in all robot-related topics",
-            "David is least interested in the autonomous robots topic",
-            "David’s interests are not related to any identified topics"
+            "His keywords exactly match David’s",
+            "His research themes align with Topic 22 (mobil, robot, autonom)",
+            "His cosine similarity score is higher than Matsuno’s",
+            "He has more publications than other advisors"
         ],
-        "answer": "David is mostly interested in the autonomous robots topic",
+        "answer": "His research themes align with Topic 22 (mobil, robot, autonom)",
         "question_number": 20,
-        "explanation": "Feature-Based: The high proportion (0.6) for 'autonomous robots' indicates David’s primary interest, so the system recommends advisors with similar topic distributions."
-    },
-    {
-        "question": "David’s topic distribution is [0.25, 0.25, 0.5] for autonomous robots, multi-robot systems, and tele-operation. Which advisor’s topic distribution is the best match? If David’s distribution were [0.1, 0.1, 0.8], the best match might differ.",
-        "options": [
-            "[0.2, 0.8, 0.5]",
-            "[0.4, 0.4, 0.2]",
-            "[0.1, 0.5, 0.4]",
-            "[0.3, 0.2, 0.5]"
-        ],
-        "answer": "[0.3, 0.2, 0.5]",
-        "question_number": 21,
-        "explanation": "Counterfactual-Based: The advisor with [0.3, 0.2, 0.5] is closest to David’s [0.25, 0.25, 0.5], especially in the dominant 'tele-operation' topic. If David’s distribution were [0.1, 0.1, 0.8], an advisor with a higher 'tele-operation' proportion (e.g., [0.2, 0.8, 0.5]) might be preferred."
-    },
-    {
-        "question": "If a keyword like 'multi-robot systems' has a topic distribution of [0.3, 0.4, 0.3] across autonomous robots, multi-robot systems, and tele-operation, and appears 10 times in David’s document, how many times is it expected to belong to the 'multi-robot systems' topic?",
-        "options": [
-            "3",
-            "4",
-            "5",
-            "6"
-        ],
-        "answer": "4",
-        "question_number": 22,
-        "explanation": "Feature-Based: The keyword’s 0.4 proportion for 'multi-robot systems' means 0.4 * 10 = 4 occurrences are expected to belong to that topic."
+        "explanation": "Scenario-Specific: Heckmann’s high LDA score reflects thematic alignment with Topic 22, relevant to David’s interests."
     }
 ]
     if who=='Sara Lee':
@@ -1094,6 +1080,7 @@ if st.session_state.page == "home":
 elif st.session_state.page == "quiz":
     run_quiz()
     
+
 
 
 
