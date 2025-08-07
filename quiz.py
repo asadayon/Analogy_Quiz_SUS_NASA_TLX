@@ -1069,6 +1069,10 @@ def run_quiz():
             #connection.commit()
             #cursor.close()
             #connection.close()
+            if st.button("Go to Survey"):
+                st.session_state.page='post_quiz'
+                st.rerun()
+                
 
 def run_post_quiz():
     username = st.session_state.get("username", "anonymous")
@@ -1184,6 +1188,7 @@ if st.session_state.page == "quiz":
     
  
                 
+
 
 
 
