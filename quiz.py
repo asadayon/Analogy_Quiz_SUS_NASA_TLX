@@ -1079,6 +1079,7 @@ def run_post_quiz():
     username = st.session_state.get("username", "anonymous")
     st.markdown("### Post Quiz Survey")
     st.markdown("---")
+    print("From Survey")
 
     st.write(f"Hello, {username}")
     opts = list(range(1,8))
@@ -1189,6 +1190,7 @@ if st.session_state.page == "quiz":
     
  
                 
+
 
 
 
