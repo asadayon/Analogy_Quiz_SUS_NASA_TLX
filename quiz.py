@@ -1069,8 +1069,9 @@ def run_quiz():
             #connection.commit()
             #cursor.close()
             #connection.close()
-            if st.button("Go to Survey"):
+            if st.button("Start Survey"):
                 st.session_state.page='post_quiz'
+                run_post_quiz()
                 st.rerun()
                 
 
@@ -1188,6 +1189,7 @@ if st.session_state.page == "quiz":
     
  
                 
+
 
 
 
