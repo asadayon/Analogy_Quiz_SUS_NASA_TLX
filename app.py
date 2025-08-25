@@ -10,7 +10,7 @@ SUPABASE_KEY = st.secrets["SUP_KEY"]
 
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-def run_quiz():
+
   
 
 
