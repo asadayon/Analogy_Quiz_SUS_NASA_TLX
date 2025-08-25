@@ -61,5 +61,16 @@ if st.session_state.page == "quiz":
                 on_change=update_answer,   # Trigger function
                 args=(q_num, st.session_state.get(f"q{q_num}"))
             )
+            st.markdown("")
+
+        st.write("---")
+
+        num_answered = sum(ans is not None for ans in st.session_state["answers"].values())
+        total_qs = len(st.session_state["quiz_questions"])
+        st.info(f"**{num_answered} out of {total_qs}** questions answered.")
+
+        if st.button("Submit"):
+            st.session_state["submitted"] = True
+            st.rerun()
             
  
