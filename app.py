@@ -11,7 +11,8 @@ SUPABASE_KEY = st.secrets["SUP_KEY"]
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 
-  
+ def update_answer(question_number, selected_option):
+    st.session_state.answers[question_number] = selected_option 
 
 
 
@@ -38,6 +39,8 @@ if st.session_state.page == "quiz":
     if "quiz_questions" not in st.session_state:
         questions=load_questions(st.session_state.student_name)
         st.session_state.quiz_questions = questions
+    if "answers" not in st.session_state:
+        st.session_state.answers = {}
 
     if not st.session_state["submitted"]:
         st.title("Student Advisor Recommender System Quiz")
@@ -48,12 +51,15 @@ if st.session_state.page == "quiz":
     
         for i, question in enumerate(st.session_state.quiz_questions):
             st.write(f"Q{i+1}: {question['question']}")
+            q_num=question['question_number']
             st.markdown(f"**Q{question['question_number']}. {question['question']}**")
             user_answer = st.radio(
                 "Choose your answer:",
                 question["options"],
-                index=None,  # No option selected initially
-                key=f"question_{i}"
+                key=f"q{q_num}"
+                index=st.session_state.answers[q_num] if q_num in st.session_state.answers else None,
+                on_change=update_answer,   # Trigger function
+                args=(q_num, st.session_state.get(f"q{q_num}"))
             )
-            user_answers.append(user_answer)
+            
  
