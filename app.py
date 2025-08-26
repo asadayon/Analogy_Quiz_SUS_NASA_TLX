@@ -52,7 +52,7 @@ if "page" not in st.session_state:
 if st.session_state.page == "home":
     st.title("Student Advisor Recommender System Quiz")
     user_names=['Emily Zhang', 'Amina Rahman','David Chen', 'Sara Lee']
-    student_name = st.selectbox("Select a student scenario", user_names)
+    student_name = st.selectbox("Select a student scenario", user_names, key='s_name')
     username = st.text_input("Enter your name")
 
 
