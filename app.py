@@ -10,8 +10,7 @@ SUPABASE_KEY = st.secrets["SUP_KEY"]
 
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-
- def update_answer(question_number, selected_option):
+def update_answer(question_number, selected_option):
     st.session_state.answers[question_number] = selected_option 
 
 
