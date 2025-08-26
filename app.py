@@ -71,6 +71,59 @@ if st.session_state.page == "quiz":
 
         if st.button("Submit"):
             st.session_state["submitted"] = True
+            st.session_state.page = "quiz_submission"
             st.rerun()
             
- 
+ if st.session_state.page == "quiz_submission":
+    username = st.session_state.get("username", "anonymous")
+    answers = st.session_state["answers"]
+    questions = st.session_state["quiz_questions"]
+    # Compute score
+    # Score
+    num_correct = 0
+    for q in questions:
+        qid = q["question_number"]
+        selected = answers.get(qid)
+        if selected is None:
+            continue
+
+        # Get the original index of selected option
+        correct = q["answer"]
+
+        # Check if this original index matches correct_index
+        if selected == correct:
+            num_correct += 1
+
+    st.success(f"Thanks, **{username}**! You answered **{num_correct}** questions correctly.")
+
+    st.write("---")
+    # Show per-question feedback
+    # Show per-question feedback
+    for idx, q in enumerate(questions):
+        qid = q["question_number"]
+        prompt = q["question"]
+        chosen = answers.get(qid)
+        
+        st.markdown(f"**Q{idx + 1}. {prompt}**")
+
+        if chosen is None:
+            st.markdown("<span style='color:gray;'>No answer selected.</span>", unsafe_allow_html=True)
+            continue
+
+        correct = q["answer"]
+        is_correct = chosen == correct
+
+        color = "green" if is_correct else "red"
+        status = "Correct" if is_correct else "Incorrect"
+
+        st.markdown(
+            f"<span style='color:{color};'><b>Your answer:</b> {chosen}</span><br>"
+            f"<span style='color:"green";'><b>Correct answer:</b> {correct}</span><br>"
+            f"<span style='color:{color};'><i>{status}</i></span>",
+            unsafe_allow_html=True
+        )
+
+
+    if st.button("Go To Survey"):
+        st.session_state.page = "post_quiz"
+        st.rerun()
