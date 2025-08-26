@@ -10,10 +10,16 @@ SUPABASE_KEY = st.secrets["SUP_KEY"]
 
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-def update_answer(question_number, selected_option):
+def store_answer(question_number, selected_option):
     st.session_state.answers[question_number] = selected_option 
 
 
+def reset():
+    for key in list(st.session_state.keys()):
+        if key.startswith("q_"):   # only reset quiz-related keys
+            del st.session_state[key]
+
+st.session_state.submitted=False
 
 
 # Run the quiz
@@ -25,6 +31,7 @@ if st.session_state.page == "home":
     user_names=['Emily Zhang', 'Amina Rahman','David Chen', 'Sara Lee']
     student_name = st.selectbox("Select a student scenario", user_names)
     username = st.text_input("Enter your name")
+
 
     if st.button("Start Quiz"):
         st.session_state.page = "quiz"
@@ -49,31 +56,31 @@ if st.session_state.page == "quiz":
         correct_count = 0
     
         for i, question in enumerate(st.session_state.quiz_questions):
-            st.write(f"Q{i+1}: {question['question']}")
             q_num=question['question_number']
             st.markdown(f"**Q{question['question_number']}. {question['question']}**")
             user_answer = st.radio(
                 "Choose your answer:",
                 question["options"],
-                key=f"q{q_num}"
-                index=st.session_state.answers[q_num] if q_num in st.session_state.answers else None,
-                on_change=update_answer,   # Trigger function
-                args=(q_num, st.session_state.get(f"q{q_num}"))
+                key=f"q_{q_num}",
+                index= None
             )
             st.markdown("")
 
         st.write("---")
 
-        num_answered = sum(ans is not None for ans in st.session_state["answers"].values())
+        num_answered = len([ k for k, v in st.session_state.items() if k.startswith("q_") and v is not None])
         total_qs = len(st.session_state["quiz_questions"])
         st.info(f"**{num_answered} out of {total_qs}** questions answered.")
 
         if st.button("Submit"):
+            for i in range(1,21):
+                key=f"q_{i}"
+                store_answer(i, st.session_state[key])
             st.session_state["submitted"] = True
             st.session_state.page = "quiz_submission"
             st.rerun()
             
- if st.session_state.page == "quiz_submission":
+if st.session_state.page == "quiz_submission":
     username = st.session_state.get("username", "anonymous")
     answers = st.session_state["answers"]
     questions = st.session_state["quiz_questions"]
@@ -107,6 +114,7 @@ if st.session_state.page == "quiz":
 
         if chosen is None:
             st.markdown("<span style='color:gray;'>No answer selected.</span>", unsafe_allow_html=True)
+            st.markdown(f"<span style='color:gray;'><b>Correct answer:</b> {correct}</span>", unsafe_allow_html=True)
             continue
 
         correct = q["answer"]
@@ -114,13 +122,15 @@ if st.session_state.page == "quiz":
 
         color = "green" if is_correct else "red"
         status = "Correct" if is_correct else "Incorrect"
+       
 
         st.markdown(
             f"<span style='color:{color};'><b>Your answer:</b> {chosen}</span><br>"
-            f"<span style='color:"green";'><b>Correct answer:</b> {correct}</span><br>"
             f"<span style='color:{color};'><i>{status}</i></span>",
             unsafe_allow_html=True
         )
+        if not is_correct:
+            st.markdown(f"<span style='color:gray;'><b>Correct answer:</b> {correct}</span>", unsafe_allow_html=True)
 
 
     if st.button("Go To Survey"):
