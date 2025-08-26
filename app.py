@@ -216,7 +216,7 @@ if st.session_state.page == "post_quiz":
         else:
             for i in range(1,len(st.session_state.post_quiz_questions)+1):
                     key=f"pq_{i}"
-                    store_answer(i, st.session_state[key])
+                    store_survey_answer(i, st.session_state[key])
             st.session_state["survey_submitted"] = True
             st.session_state.page = "post_quiz_submission"
             st.rerun()
