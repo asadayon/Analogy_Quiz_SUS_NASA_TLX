@@ -16,7 +16,27 @@ def store_answer(question_number, selected_option):
 
 def store_survey_answer(question_number, selected_option):
     st.session_state.post_quiz_answers[question_number] = selected_option 
-    
+
+
+def add_user(user_name, scenario, version):
+    """
+    Start a new session for a given user and scenario.
+    Inserts a row into the 'session' table.
+    Returns the new session info (including generated session_id).
+    """
+
+    resp = (
+            supabase.table("quiz_user")
+            .insert({
+                "user_name": user_name,
+                "scenario": scenario,
+                "version": version
+            })
+            .execute()
+        )
+ 
+
+
 def reset():
     for key in list(st.session_state.keys()):
         if key.startswith("q_"):   # only reset quiz-related keys
@@ -223,6 +243,7 @@ if st.session_state.page == "post_quiz":
 
 if st.session_state.page == "post_quiz_submission":
     st.title("Thank you!")
+
 
 
 
