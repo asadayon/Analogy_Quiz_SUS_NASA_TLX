@@ -12,25 +12,57 @@ SUPABASE_KEY = st.secrets["SUP_KEY"]
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 def store_answer(question_number, selected_option):
-    st.session_state.answers[question_number] = selected_option 
+    st.session_state.answers[question_number] = selected_option
+
+    
+def update_quiz_database(question_number, text, selected_option, correct, is_correct):
+     if not st.session_state["quiz_database"]:    
+        resp = (
+                supabase.table("quiz_response")
+                .insert({
+                    "username": st.session_state["username"] ,
+                    "scenario": st.session_state["student_name"],
+                    "question_id": question_number,
+                    "user_answer": selected_option,
+                    "is_correct":is_correct,
+                    "question_text": text,
+                    "correct_answer": correct
+                })
+                .execute()
+            )
+def update_survey_database(question_number, selected_option,text):
+     if not st.session_state["survey_submitted"]:    
+        resp = (
+                supabase.table("survey_response")
+                .insert({
+                    "username": st.session_state["username"] ,
+                    "scenario": st.session_state["student_name"],
+                    "version":  st.session_state["version"],
+                    "question_id": question_number,
+                    "question_text": text,
+                    "user_response": selected_option
+                })
+                .execute()
+            )
+        
 
 def store_survey_answer(question_number, selected_option):
     st.session_state.post_quiz_answers[question_number] = selected_option 
 
 
-def add_user(user_name, scenario, version):
+def add_user():
     """
     Start a new session for a given user and scenario.
     Inserts a row into the 'session' table.
     Returns the new session info (including generated session_id).
     """
-
+   
     resp = (
             supabase.table("quiz_user")
             .insert({
-                "user_name": user_name,
-                "scenario": scenario,
-                "version": version
+                "username": st.session_state["username"] ,
+                "scenario": st.session_state["student_name"],
+                "version":  st.session_state["version"] 
             })
             .execute()
         )
@@ -52,7 +84,8 @@ if "page" not in st.session_state:
 if st.session_state.page == "home":
     st.title("Student Advisor Recommender System Quiz")
     user_names=['Emily Zhang', 'Amina Rahman','David Chen', 'Sara Lee']
-    student_name = st.selectbox("Select a student scenario", user_names, key='s_name')
+    student_name = st.selectbox("Select a student scenario", user_names)
+    version = st.selectbox("Select a student scenario", ["v1","v2"])
     username = st.text_input("Enter your name")
 
 
@@ -60,7 +93,11 @@ if st.session_state.page == "home":
         st.session_state.page = "quiz"
         st.session_state["student_name"] = student_name
         st.session_state["username"] = username.strip()
+        st.session_state["version"] = version
         st.session_state["quiz_start_time"] = time.time()
+        st.session_state["quiz_database"]=False
+        st.session_state["survey_submitted"] = False
+        add_user()
         st.rerun()
 
 
@@ -94,11 +131,12 @@ if st.session_state.page == "quiz":
         num_answered = len([ k for k, v in st.session_state.items() if k.startswith("q_") and v is not None])
         total_qs = len(st.session_state["quiz_questions"])
         st.info(f"**{num_answered} out of {total_qs}** questions answered.")
-
+        
         if st.button("Submit"):
             for i in range(1,21):
                 key=f"q_{i}"
                 store_answer(i, st.session_state[key])
+                
             st.session_state["submitted"] = True
             st.session_state.page = "quiz_submission"
             st.rerun()
@@ -110,6 +148,7 @@ if st.session_state.page == "quiz_submission":
     # Compute score
     # Score
     num_correct = 0
+    
     for q in questions:
         qid = q["question_number"]
         selected = answers.get(qid)
@@ -122,6 +161,8 @@ if st.session_state.page == "quiz_submission":
         # Check if this original index matches correct_index
         if selected == correct:
             num_correct += 1
+        update_quiz_database(qid, q["question"],selected, correct, selected == correct)
+    st.session_state["quiz_database"]=True
 
     st.success(f"Thanks, **{username}**! You answered **{num_correct}** questions correctly.")
 
@@ -237,6 +278,7 @@ if st.session_state.page == "post_quiz":
             for i in range(1,len(st.session_state.post_quiz_questions)+1):
                     key=f"pq_{i}"
                     store_survey_answer(i, st.session_state[key])
+                    update_survey_database(i, st.session_state[key],st.session_state.post_quiz_questions[i-1])
             st.session_state["survey_submitted"] = True
             st.session_state.page = "post_quiz_submission"
             st.rerun()
@@ -250,4 +292,5 @@ if st.session_state.page == "post_quiz_submission":
 
 
         
+
 
