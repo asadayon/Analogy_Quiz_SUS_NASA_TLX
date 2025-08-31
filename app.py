@@ -193,9 +193,7 @@ if st.session_state.page == "quiz_submission":
             f"<span style='color:{color};'><i>{status}</i></span>",
             unsafe_allow_html=True
         )
-        if not is_correct:
-            st.markdown(f"<span style='color:gray;'><b>Correct answer:</b> {correct}</span>", unsafe_allow_html=True)
-
+        
 
     if st.button("Go To Survey"):
         st.session_state.page = "post_quiz"
