@@ -30,6 +30,9 @@ def update_quiz_database(question_number, text, selected_option, correct, is_cor
                 })
                 .execute()
             )
+def update_quiz_result():
+    pass
+
 def update_survey_database(question_number, selected_option,text):
      if not st.session_state["survey_submitted"]:    
         resp = (
@@ -97,6 +100,7 @@ if st.session_state.page == "home":
         st.session_state["quiz_start_time"] = time.time()
         st.session_state["quiz_database"]=False
         st.session_state["survey_submitted"] = False
+        st.session_state["quiz_result"]=0
         add_user()
         st.rerun()
 
@@ -162,8 +166,10 @@ if st.session_state.page == "quiz_submission":
         if selected == correct:
             num_correct += 1
         update_quiz_database(qid, q["question"],selected, correct, selected == correct)
+    st.session_state["quiz_result"]=num_correct
+    update_quiz_result()
     st.session_state["quiz_database"]=True
-
+    
     st.success(f"Thanks, **{username}**! You answered **{num_correct}** questions correctly.")
 
     st.write("---")
