@@ -5,6 +5,7 @@ from supabase import create_client
 from quiz import load_questions
 from quiz import load_survey
 import time
+from datetime import datetime, timezone
 
 SUPABASE_URL = st.secrets["SUP_URL"]
 SUPABASE_KEY = st.secrets["SUP_KEY"]
@@ -32,9 +33,11 @@ def update_quiz_database(question_number, text, selected_option, correct, is_cor
             )
 def update_quiz_result():
     if st.session_state["quiz_result"]>0:
+            now_utc = datetime.now(timezone.utc).isoformat()
             response = (
                 supabase.table("quiz_user")
-                .update({"total_score": st.session_state["quiz_result"]})
+                .update({"quiz_end_time": now_utc,
+                         "total_score": st.session_state["quiz_result"]})
                 .eq("username", st.session_state["username"])
                 .eq("scenario", st.session_state["student_name"])
                 .execute()
