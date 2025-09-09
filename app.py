@@ -31,7 +31,17 @@ def update_quiz_database(question_number, text, selected_option, correct, is_cor
                 .execute()
             )
 def update_quiz_result():
-    pass
+    if st.session_state["quiz_result"]>0:
+            response = (
+                supabase.table("quiz_user")
+                .update({"total_score": st.session_state["quiz_result"]})
+                .eq("username", st.session_state["username"])
+                .eq("scenario", st.session_state["student_name"])
+                .execute()
+            )
+            st.session_state["quiz_result"]=0
+                    
+    
 
 def update_survey_database(question_number, selected_option,text):
      if not st.session_state["survey_submitted"]:    
