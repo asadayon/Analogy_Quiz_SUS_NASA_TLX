@@ -15,7 +15,6 @@ def load_survey():
     "I feel confident in using the system’s recommendations to make decisions about selecting an advisor."
 ]
 
-
 def load_sus():
     """
     System Usability Scale items.
@@ -23,16 +22,46 @@ def load_sus():
     1 = Strongly disagree, 5 = Strongly agree
     """
     return [
-        "I think that I would like to use this version of the advisor recommender system frequently.",
-        "I found this version of the advisor recommender system unnecessarily complex.",
-        "I thought this version of the advisor recommender system was easy to use.",
-        "I think that I would need the support of a technical person to be able to use this version of the advisor recommender system.",
-        "I found the various functions in this version of the advisor recommender system were well integrated.",
-        "I thought there was too much inconsistency in this version of the advisor recommender system.",
-        "I would imagine that most people would learn to use this version of the advisor recommender system very quickly.",
-        "I found this version of the advisor recommender system very cumbersome to use.",
-        "I felt very confident using this version of the advisor recommender system.",
-        "I needed to learn a lot of things before I could get going with this version of the advisor recommender system."
+        {
+            "id": "SUS-1",
+            "question": "I think that I would like to use this version of the advisor recommender system frequently."
+        },
+        {
+            "id": "SUS-2",
+            "question": "I found this version of the advisor recommender system unnecessarily complex."
+        },
+        {
+            "id": "SUS-3",
+            "question": "I thought this version of the advisor recommender system was easy to use."
+        },
+        {
+            "id": "SUS-4",
+            "question": "I think that I would need the support of a technical person to be able to use this version of the advisor recommender system."
+        },
+        {
+            "id": "SUS-5",
+            "question": "I found the various functions in this version of the advisor recommender system were well integrated."
+        },
+        {
+            "id": "SUS-6",
+            "question": "I thought there was too much inconsistency in this version of the advisor recommender system."
+        },
+        {
+            "id": "SUS-7",
+            "question": "I would imagine that most people would learn to use this version of the advisor recommender system very quickly."
+        },
+        {
+            "id": "SUS-8",
+            "question": "I found this version of the advisor recommender system very cumbersome to use."
+        },
+        {
+            "id": "SUS-9",
+            "question": "I felt very confident using this version of the advisor recommender system."
+        },
+        {
+            "id": "SUS-10",
+            "question": "I needed to learn a lot of things before I could get going with this version of the advisor recommender system."
+        }
     ]
 
 
@@ -43,27 +72,31 @@ def load_nasa_tlx():
     """
     return [
         {
+            "id": "NTLX-1",
             "dimension": "Mental Demand",
             "question": "How mentally demanding was it to understand the explanation provided by the system?"
         },
         {
+            "id": "NTLX-2",
             "dimension": "Temporal Demand",
             "question": "How rushed or time-pressured did you feel while completing the task?"
         },
         {
+            "id": "NTLX-3",
             "dimension": "Effort",
             "question": "How much effort did you need to understand the recommendation and complete the task?"
         },
         {
+            "id": "NTLX-4",
             "dimension": "Frustration",
             "question": "How frustrated, confused, or discouraged did you feel while using the system?"
         },
         {
+            "id": "NTLX-5",
             "dimension": "Performance",
             "question": "How successful did you feel in understanding the recommendation and completing the task?"
         }
     ]
-
 def load_questions(who):
     if who=='Amina Rahman':
         return [
