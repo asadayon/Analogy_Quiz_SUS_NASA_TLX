@@ -46,24 +46,38 @@ def update_quiz_result():
                     
     
 
-def update_survey_database(question_number, selected_option,text):
-     if not st.session_state["survey_submitted"]:    
-        resp = (
-                supabase.table("survey_response")
-                .insert({
-                    "username": st.session_state["username"] ,
-                    "scenario": st.session_state["student_name"],
-                    "version":  st.session_state["version"],
-                    "question_id": question_number,
-                    "question_text": text,
-                    "user_response": selected_option
-                })
-                .execute()
-            )
-        
+def update_survey_database(question_id, selected_option, text):
+    """
+    Save one survey response to Supabase.
 
-def store_survey_answer(question_number, selected_option):
-    st.session_state.post_quiz_answers[question_number] = selected_option 
+    question_id examples:
+    SUS-1, SUS-2, NTLX-1, NTLX-2
+    """
+    if not st.session_state.get("survey_submitted", False):
+        resp = (
+            supabase.table("survey_response")
+            .insert({
+                "username": st.session_state["username"],
+                "scenario": st.session_state["student_name"],
+                "version": st.session_state["version"],
+                "question_id": question_id,
+                "question_text": text,
+                "user_response": selected_option
+            })
+            .execute()
+        )
+
+        return resp
+
+
+def store_survey_answer(question_id, selected_option):
+    """
+    Store survey response temporarily in Streamlit session state.
+    """
+    if "post_quiz_answers" not in st.session_state:
+        st.session_state.post_quiz_answers = {}
+
+    st.session_state.post_quiz_answers[question_id] = selected_option
 
 
 def add_user():
@@ -223,6 +237,7 @@ if st.session_state.page == "post_quiz":
 
     st.markdown("### Post-Quiz Survey")
     st.markdown("---")
+
     st.write(f"Hello, {username}")
 
     st.write("#### 📝 Please complete the following survey")
@@ -235,22 +250,23 @@ if st.session_state.page == "post_quiz":
 
     st.write("---")
 
-    # -------------------------
-    # Load SUS and NASA-TLX only
-    # -------------------------
+    # Initialize survey questions
     if "post_quiz_questions" not in st.session_state:
         st.session_state.post_quiz_questions = {
             "sus": load_sus(),
             "nasa_tlx": load_nasa_tlx()
         }
 
-    # -------------------------
-    # SUS: 5-point Likert scale
-    # -------------------------
-    sus_opts = list(range(1, 6))
+    if "post_quiz_answers" not in st.session_state:
+        st.session_state.post_quiz_answers = {}
 
+    # ======================================================
+    # SUS SECTION
+    # ======================================================
     st.markdown("### System Usability Scale (SUS)")
     st.caption("Scale: 1 = Strongly Disagree, 5 = Strongly Agree")
+
+    sus_opts = list(range(1, 6))
 
     for item in st.session_state.post_quiz_questions["sus"]:
         qid = item["id"]
@@ -294,13 +310,13 @@ if st.session_state.page == "post_quiz":
 
     st.write("---")
 
-    # -------------------------
-    # NASA-TLX: 1–7 scale
-    # -------------------------
-    nasa_opts = list(range(1, 8))
-
+    # ======================================================
+    # NASA-TLX SECTION
+    # ======================================================
     st.markdown("### NASA-TLX Workload Survey")
     st.caption("Scale: 1 = Very Low, 7 = Very High")
+
+    nasa_opts = list(range(1, 8))
 
     for item in st.session_state.post_quiz_questions["nasa_tlx"]:
         qid = item["id"]
@@ -343,9 +359,9 @@ if st.session_state.page == "post_quiz":
 
         st.markdown("")
 
-    # -------------------------
-    # Submit
-    # -------------------------
+    # ======================================================
+    # SUBMIT SECTION
+    # ======================================================
     if st.button("Submit"):
         survey_items = (
             st.session_state.post_quiz_questions["sus"]
@@ -367,25 +383,12 @@ if st.session_state.page == "post_quiz":
 
                 if qid.startswith("SUS"):
                     question_text = item["question"]
-                    survey_type = "SUS"
-                    dimension = None
 
                 elif qid.startswith("NTLX"):
-                    question_text = item["question"]
-                    survey_type = "NASA-TLX"
-                    dimension = item["dimension"]
+                    question_text = f"{item['dimension']}: {item['question']}"
 
-                # Option 1: store only question id and answer
                 store_survey_answer(qid, answer)
-
-                # Option 2: store full survey metadata
-                update_survey_database(
-                    qid,
-                    answer,
-                    question_text,
-                    survey_type=survey_type,
-                    dimension=dimension
-                )
+                update_survey_database(qid, answer, question_text)
 
             st.session_state["survey_submitted"] = True
             st.session_state.page = "post_quiz_submission"
@@ -394,6 +397,7 @@ if st.session_state.page == "post_quiz":
 
 if st.session_state.page == "post_quiz_submission":
     st.title("Thank you!")
+    st.success("Your survey response has been submitted successfully.")
 
 
 
