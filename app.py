@@ -23,6 +23,7 @@ def update_quiz_database(question_number, text, selected_option, correct, is_cor
                 .insert({
                     "username": st.session_state["username"] ,
                     "scenario": st.session_state["student_name"],
+                    "version": st.session_state["version"],
                     "question_id": question_number,
                     "user_answer": selected_option,
                     "is_correct":is_correct,
