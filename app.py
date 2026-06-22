@@ -3,7 +3,7 @@ import random
 import matplotlib.pyplot as plt
 from supabase import create_client
 from quiz import load_questions
-from quiz import load_survey
+from quiz import load_survey, load_sus, load_nasa_tlx
 import time
 from datetime import datetime, timezone
 
