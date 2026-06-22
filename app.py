@@ -220,89 +220,180 @@ if st.session_state.page == "quiz_submission":
 
 if st.session_state.page == "post_quiz":
     username = st.session_state.get("username", "anonymous")
-    st.markdown("### Post Quiz Survey")
+
+    st.markdown("### Post-Quiz Survey")
     st.markdown("---")
-
     st.write(f"Hello, {username}")
-    opts = list(range(1,8))
-    likert_labels = {
-        1: "Strongly Disagree",
-        2: "Disagree",
-        3: "Somewhat Disagree",
-        4: "Neutral",
-        5: "Somewhat Agree",
-        6: "Agree",
-        7: "Strongly Agree"
-    }
-    if opts[-1] == 5:
-        likert_labels = {
-            1: "Strongly Disagree",
-            2: "Disagree",
-            3: "Neutral",
-            4: "Agree",
-            5: "Strongly Agree"
-        }
 
-        
     st.write("#### 📝 Please complete the following survey")
     st.markdown(
-      """This survey helps us understand how well the system’s explanations supported your understanding of the advisor recommendation process and your trust in its recommendations. Your feedback will help us improve the clarity and usefulness of the explanations for future users, whether delivered through static text or an interactive interface."""
-
+        """
+        This survey helps us understand the usability of this version of the advisor recommender system
+        and the workload required to understand its explanations and complete the task.
+        """
     )
-    
+
     st.write("---")
-    if "post_quiz_questions" not in st.session_state:        
-        post_quiz_questions = load_survey()
 
-        st.session_state.post_quiz_questions = post_quiz_questions
-        st.session_state.post_quiz_answers = {}
-        
-    for idx,q in enumerate (st.session_state.post_quiz_questions):
+    # -------------------------
+    # Load SUS and NASA-TLX only
+    # -------------------------
+    if "post_quiz_questions" not in st.session_state:
+        st.session_state.post_quiz_questions = {
+            "sus": load_sus(),
+            "nasa_tlx": load_nasa_tlx()
+        }
 
-        question = q
-        qid = idx+1
-        
-        st.markdown(f"**Q{idx+1}. {question}**")
-        col1,col2,col3 = st.columns([2.5, 6, 2])
+    # -------------------------
+    # SUS: 5-point Likert scale
+    # -------------------------
+    sus_opts = list(range(1, 6))
+
+    st.markdown("### System Usability Scale (SUS)")
+    st.caption("Scale: 1 = Strongly Disagree, 5 = Strongly Agree")
+
+    for item in st.session_state.post_quiz_questions["sus"]:
+        qid = item["id"]
+        question = item["question"]
+
+        st.markdown(f"**{qid}. {question}**")
+
+        col1, col2, col3 = st.columns([2.5, 6, 2])
+
         with col1:
-            st.markdown("""
-            <div style='display:flex; align-items:center; height:100%; padding-top:0.5rem'>
-                Strongly Disagree
-            </div>
-            """, unsafe_allow_html=True)
+            st.markdown(
+                """
+                <div style='display:flex; align-items:center; height:100%; padding-top:0.5rem'>
+                    Strongly Disagree
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
         with col2:
             st.radio(
-                label=f"Q{idx+1}. {question}",
-                label_visibility = "collapsed",
-                options=opts,
+                label=f"{qid}. {question}",
+                label_visibility="collapsed",
+                options=sus_opts,
                 index=None,
                 key=f"pq_{qid}",
-                horizontal = True
+                horizontal=True
             )
+
         with col3:
-            st.markdown("""
-            <div style='display:flex; align-items:center; height:100%; padding-top:0.5rem'>
-                Strongly Agree
-            </div>
-            """, unsafe_allow_html=True)
+            st.markdown(
+                """
+                <div style='display:flex; align-items:center; height:100%; padding-top:0.5rem'>
+                    Strongly Agree
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
         st.markdown("")
+
+    st.write("---")
+
+    # -------------------------
+    # NASA-TLX: 1–7 scale
+    # -------------------------
+    nasa_opts = list(range(1, 8))
+
+    st.markdown("### NASA-TLX Workload Survey")
+    st.caption("Scale: 1 = Very Low, 7 = Very High")
+
+    for item in st.session_state.post_quiz_questions["nasa_tlx"]:
+        qid = item["id"]
+        dimension = item["dimension"]
+        question = item["question"]
+
+        st.markdown(f"**{qid}. {dimension}: {question}**")
+
+        col1, col2, col3 = st.columns([2.5, 6, 2])
+
+        with col1:
+            st.markdown(
+                """
+                <div style='display:flex; align-items:center; height:100%; padding-top:0.5rem'>
+                    Very Low
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+        with col2:
+            st.radio(
+                label=f"{qid}. {question}",
+                label_visibility="collapsed",
+                options=nasa_opts,
+                index=None,
+                key=f"pq_{qid}",
+                horizontal=True
+            )
+
+        with col3:
+            st.markdown(
+                """
+                <div style='display:flex; align-items:center; height:100%; padding-top:0.5rem'>
+                    Very High
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+        st.markdown("")
+
+    # -------------------------
+    # Submit
+    # -------------------------
     if st.button("Submit"):
-        unanswered =  len([ k for k, v in st.session_state.items() if k.startswith("pq_") and v is None])
+        survey_items = (
+            st.session_state.post_quiz_questions["sus"]
+            + st.session_state.post_quiz_questions["nasa_tlx"]
+        )
+
+        unanswered = [
+            item["id"]
+            for item in survey_items
+            if st.session_state.get(f"pq_{item['id']}") is None
+        ]
 
         if unanswered:
             st.error("Please answer all questions before submitting.")
         else:
-            for i in range(1,len(st.session_state.post_quiz_questions)+1):
-                    key=f"pq_{i}"
-                    store_survey_answer(i, st.session_state[key])
-                    update_survey_database(i, st.session_state[key],st.session_state.post_quiz_questions[i-1])
+            for item in survey_items:
+                qid = item["id"]
+                answer = st.session_state[f"pq_{qid}"]
+
+                if qid.startswith("SUS"):
+                    question_text = item["question"]
+                    survey_type = "SUS"
+                    dimension = None
+
+                elif qid.startswith("NTLX"):
+                    question_text = item["question"]
+                    survey_type = "NASA-TLX"
+                    dimension = item["dimension"]
+
+                # Option 1: store only question id and answer
+                store_survey_answer(qid, answer)
+
+                # Option 2: store full survey metadata
+                update_survey_database(
+                    qid,
+                    answer,
+                    question_text,
+                    survey_type=survey_type,
+                    dimension=dimension
+                )
+
             st.session_state["survey_submitted"] = True
             st.session_state.page = "post_quiz_submission"
             st.rerun()
 
+
 if st.session_state.page == "post_quiz_submission":
     st.title("Thank you!")
-
 
 
 
