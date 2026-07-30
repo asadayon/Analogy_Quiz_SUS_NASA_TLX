@@ -116,7 +116,8 @@ if st.session_state.page == "home":
     st.title("Student Advisor Recommender System Quiz")
     user_names=['Emily Zhang', 'Amina Rahman','David Chen', 'Sara Lee']
     student_name = st.selectbox("Select a student scenario", user_names)
-    version = st.selectbox("Select a student scenario", ["v1","v2","v3","v4"])
+    version = st.selectbox("Select the study version", ["v1","v2","v3","v4"])
+    position = st.selectbox("Select current study number", ["1","2","3","4"])
     username = st.text_input("Enter your name")
 
 
