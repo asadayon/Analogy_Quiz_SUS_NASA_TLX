@@ -143,7 +143,6 @@ if st.session_state.page == "home":
 
 
     if st.button("Start Quiz"):
-        st.session_state.page = "quiz"
         st.session_state["student_name"] = student_name
         st.session_state["username"] = username.strip()
         st.session_state["version"] = version
@@ -154,8 +153,9 @@ if st.session_state.page == "home":
         st.session_state["quiz_result"]=0
         if not add_user():
             st.error(f"Unable to add user: Duplicate username and scenario")
-            st.session_state.page = "home"
-        st.rerun()
+        else:
+            st.session_state.page = "quiz"
+            st.rerun()
 
 
 if st.session_state.page == "quiz":
