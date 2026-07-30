@@ -154,7 +154,7 @@ if st.session_state.page == "home":
         st.session_state["quiz_result"]=0
         if not add_user():
             st.error(f"Unable to add user: Duplicate username and scenario")
-            st.session_state.page = "Start Quiz"
+            st.session_state.page = "home"
         st.rerun()
 
 
