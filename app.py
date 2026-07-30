@@ -89,15 +89,14 @@ def add_user() -> bool:
         False: If a row already exists with the same username and scenario.
         True: If a new row is inserted successfully.
     """
-    username = st.session_state["username"]
-    scenario = st.session_state["student_name"]
+
 
     try:
         existing_user = (
             supabase.table("quiz_user")
             .select("username")
-            .eq("username", username)
-            .eq("scenario", scenario)
+            .eq("username", st.session_state["username"])
+            .eq("scenario", st.session_state["student_name"])
             .limit(1)
             .execute()
         )
@@ -107,8 +106,8 @@ def add_user() -> bool:
 
         supabase.table("quiz_user").insert(
             {
-                "username": username,
-                "scenario": scenario,
+                "username": st.session_state["username"],
+                "scenario": st.session_state["student_name"],
                 "version": st.session_state["version"],
                 "position": st.session_state["position"],
             }
