@@ -81,22 +81,44 @@ def store_survey_answer(question_id, selected_option):
     st.session_state.post_quiz_answers[question_id] = selected_option
 
 
-def add_user():
+def add_user() -> bool:
     """
-    Start a new session for a given user and scenario.
-    Inserts a row into the 'session' table.
-    Returns the new session info (including generated session_id).
+    Insert a new user session into the 'quiz_user' table.
+
+    Returns:
+        False: If a row already exists with the same username and scenario.
+        True: If a new row is inserted successfully.
     """
-   
-    resp = (
+    username = st.session_state["username"]
+    scenario = st.session_state["student_name"]
+
+    try:
+        existing_user = (
             supabase.table("quiz_user")
-            .insert({
-                "username": st.session_state["username"] ,
-                "scenario": st.session_state["student_name"],
-                "version":  st.session_state["version"] 
-            })
+            .select("username")
+            .eq("username", username)
+            .eq("scenario", scenario)
+            .limit(1)
             .execute()
         )
+
+        if existing_user.data:
+            return False
+
+        supabase.table("quiz_user").insert(
+            {
+                "username": username,
+                "scenario": scenario,
+                "version": st.session_state["version"],
+                "position": st.session_state["position"],
+            }
+        ).execute()
+
+        return True
+
+    except Exception as error:
+        st.error(f"Unable to add user: {error}")
+        return False
  
 
 
@@ -126,11 +148,14 @@ if st.session_state.page == "home":
         st.session_state["student_name"] = student_name
         st.session_state["username"] = username.strip()
         st.session_state["version"] = version
+        st.session_state["position"] = position
         st.session_state["quiz_start_time"] = time.time()
         st.session_state["quiz_database"]=False
         st.session_state["survey_submitted"] = False
         st.session_state["quiz_result"]=0
-        add_user()
+        if not add_user():
+            st.error(f"Unable to add user: Duplicate username and scenario")
+            st.session_state.page = "Start Quiz"
         st.rerun()
 
 
