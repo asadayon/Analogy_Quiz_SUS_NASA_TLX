@@ -843,11 +843,11 @@ def load_questions(who):
         "question": "How does the cosine similarity model work in the advisor recommender system for Sara’s research interests?",
         "options": [
             "By grouping Sara’s keywords into topics and comparing distributions",
-            "By measuring the angle between Sara’s keyword vector and advisors’ keyword vectors",
+            "By measuring the dot product between Sara’s keyword vector and advisors’ keyword vectors",
             "By counting exact keyword matches between Sara and advisors",
             "By analyzing the sentiment of Sara’s research interests"
         ],
-        "answer": "By measuring the angle between Sara’s keyword vector and advisors’ keyword vectors",
+        "answer": "By measuring the dot product between Sara’s keyword vector and advisors’ keyword vectors",
         "question_number": 1,
         "explanation": "Feature-Based: Cosine similarity calculates the angle between vectors representing Sara’s keywords (e.g., web mining, web spam) and advisors’ keywords, with smaller angles indicating stronger alignment."
     },
@@ -864,16 +864,17 @@ def load_questions(who):
         "explanation": "Feature-Based: Toyoda’s keywords (e.g., web community, web spam) closely match Sara’s (web mining, web spam), resulting in a high score of 0.828."
     },
     {
-        "question": "What is the role of LDA topic modeling in recommending advisors for Sara?",
+        "question": "What is the role of LDA in recommending advisors for Sara?",
         "options": [
-            "To count keyword frequencies in advisor profiles",
-            "To group keywords into research themes and compare topic distributions",
-            "To rank advisors by publication volume",
-            "To match exact keywords between Sara and advisors"
+            "To identify broader research topics and select the topic most relevant to Sara’s keywords",
+            "To directly count the exact keyword matches between Sara and each advisor",
+            "To calculate the number of publications produced by each advisor",
+            "To rank advisors according to the total frequency of their research keywords"
         ],
-        "answer": "To group keywords into research themes and compare topic distributions",
+        "answer": "To identify broader research topics and select the topic most relevant to Sara’s keywords",
         "question_number": 3,
-        "explanation": "Model Inner Working: LDA groups keywords into topics (e.g., Topic 21: servic, web, secur) and compares Sara’s topic distribution to advisors’ profiles."
+        "explanation": "Model Inner Working: LDA learns broader research topics from keywords that frequently occur together. It determines which learned topic, such as Topic 21 (servic, web, secur), best represents Sara’s selected interests. The system then uses the selected topic’s keyword representation to calculate cosine similarity with advisor profiles."
+
     },
     {
         "question": "Why does the system combine cosine similarity and LDA topic modeling for Sara’s recommendations?",
@@ -888,43 +889,46 @@ def load_questions(who):
         "explanation": "General: Using both models ensures recommendations reflect direct keyword matches (cosine) and broader research themes (LDA), improving accuracy."
     },
     {
-        "question": "What does Aaron L. Fogelson’s LDA similarity score of 0.9328 suggest for Sara’s interests?",
+        "question": "What does Sayed Golam Hassan Tabatabaei’s topic similarity score of 0.5467 suggest about his alignment with Sara’s interests?",
         "options": [
-            "His research is unrelated to Sara’s interests",
-            "His topic distribution aligns closely with Sara’s",
-            "He has the most publications in the system",
-            "His keywords are identical to Sara’s"
+            "His research has relatively strong alignment with the broader research theme represented by Topic 21",
+            "His research is unrelated because a strong topic similarity score must be above 0.8",
+            "His research contains exactly 54.67% of Sara’s selected keywords",
+            "His research keywords are identical to the keywords in Topic 21"
         ],
-        "answer": "His topic distribution aligns closely with Sara’s",
+        "answer": "His research has relatively strong alignment with the broader research theme represented by Topic 21",
         "question_number": 5,
-        "explanation": "Feature-Based: The high LDA score indicates Fogelson’s research aligns with Sara’s topic distribution, particularly Topic 21 (web, servic, secur)."
+        "explanation": "Feature-Based: A topic similarity score of 0.5467 indicates relatively strong alignment between the broader theme represented by Topic 21 (web, servic, secur) and the advisor’s research profile. Because LDA represents broad topics, a score near 0.5 can still indicate meaningful alignment and does not mean that the keywords are identical."
+
     },
     {
         "question": "Which of Sara’s keywords likely contributed most to Masashi Toyoda’s cosine similarity score of 0.828?",
         "options": [
             "Websites, web pages",
-            "Online communities, web mining, web spam",
-            "Search engines, tools",
-            "Community detection, algorithms"
+            "Web mining, web spam",
+            "Web search, web pages",
+            "Websites, web services"
         ],
-        "answer": "Online communities, web mining, web spam",
+        "answer": "Web mining, web spam",
         "question_number": 6,
         "explanation": "Feature-Based: Toyoda’s keywords (e.g., web community, web spam, mining) directly overlap with Sara’s online communities, web mining, and web spam."
     },
     {
+        
         "question": "Why is Sang Ho Lee’s cosine similarity score (0.759) lower than Masashi Toyoda’s (0.828)?",
         "options": [
-            "Lee’s keywords are less specific, like ‘web page’ and ‘web robot’",
-            "Lee’s research focuses on platelet aggregation",
-            "Lee has fewer publications",
-            "Lee’s research is in a different language"
+            "Lee’s keyword pattern has less overlap with Sara’s interests than Toyoda’s keyword pattern",
+            "Lee’s profile contains fewer total keywords, which automatically lowers cosine similarity",
+            "Lee’s keywords belong to a lower-probability LDA topic than Toyoda’s keywords",
+            "Lee has fewer publications related to Sara’s research area"
         ],
-        "answer": "Lee’s keywords are less specific, like ‘web page’ and ‘web robot’",
+        "answer": "Lee’s keyword pattern has less overlap with Sara’s interests than Toyoda’s keyword pattern",
         "question_number": 7,
-        "explanation": "Feature-Based: Lee’s keywords (e.g., web page, web robot) are less aligned with Sara’s specific interests (web mining, web spam) than Toyoda’s."
+        "explanation": "Feature-Based: Sang Ho Lee’s keywords, such as 'web page' and 'web robot,' align less closely with Sara’s selected interests, such as 'web mining' and 'web spam,' than Masashi Toyoda’s keywords do. This weaker keyword-pattern alignment results in a lower cosine similarity score."
+
     },
     {
-        "question": "Which topic most influences Aaron L. Fogelson’s LDA similarity score of 0.9328 for Sara?",
+        "question": "Which topic most influences Sayed Golam Hassan Tabatabaei’s LDA similarity score of 0.5467 for Sara?",
         "options": [
             "Topic 6: design, speech, process",
             "Topic 8: control, algorithm, optim",
@@ -943,33 +947,35 @@ def load_questions(who):
             "It reduced Levin’s score due to mismatch",
             "It matched all of Levin’s keywords"
         ],
-        "answer": "It aligned with Levin’s keywords like ‘data mining’ and ‘web association rule’",
+        "answer": "It reduced Levin’s score due to mismatch’",
         "question_number": 9,
-        "explanation": "Feature-Based: Levin’s keywords (data mining, web association rule) partially align with ‘web spam,’ contributing to his score."
+        "explanation": "Feature-Based: It reduced Levin’s score due to mismatch."
     },
     {
-        "question": "Which advisor’s keywords least align with Sara’s interest in ‘online communities’?",
+        "question": "Which advisor’s keywords least align with Sara’s interest in ‘web pages’?",
         "options": [
             "Masashi Toyoda",
             "Sang Ho Lee",
             "J. A. Levin",
-            "Aaron L. Fogelson"
+            "Sayed Golam Hassan Tabatabaei"
         ],
-        "answer": "Aaron L. Fogelson",
+        "answer": "Sayed Golam Hassan Tabatabaei",
         "question_number": 10,
-        "explanation": "Feature-Based: Fogelson’s keywords (e.g., platelet aggregation) are unrelated to online communities, unlike the others."
+        "explanation": "Feature-Based"
     },
     {
-        "question": "If Sara adds ‘machine learning’ to her keywords, which advisor might become rank 1 in cosine similarity?",
-        "options": [
-            "Masashi Toyoda",
-            "Sang Ho Lee",
-            "J. A. Levin",
-            "Aaron L. Fogelson"
+        "question": "Top topic similarity scores are closer to 0.5, while top text similarity scores are above 0.7. Does this mean the LDA model is not working?",
+         "options": [
+            
+            "Yes. The lower scores suggest that the topics generated by LDA do not accurately represent the advisors’ overall research areas.",
+            "Yes. Both models evaluate research alignment, so a properly working LDA model should produce scores similar to the text similarity scores.",
+            "No. A score near 0.5 can still indicate good alignment because LDA compares broader topic patterns rather than directly matching specific keywords.",
+            "No. The difference occurs mainly because LDA considers a larger collection of publications, which automatically reduces the resulting scores."
         ],
-        "answer": "J. A. Levin",
+        "answer": "No. A score near 0.5 can still indicate good alignment because LDA compares broader topic patterns rather than directly matching specific keywords.",
         "question_number": 11,
-        "explanation": "Counterfactual-Based: Levin’s keywords (e.g., data mining, web association rule) are closer to machine learning, potentially boosting his score."
+        "explanation": "Model-Specific: A topic similarity score near 0.5 does not mean the LDA model is not working. LDA captures broader topic patterns, so a score near 0.5 can still represent good topic-level alignment. Text similarity directly compares specific keywords, which can produce higher scores when the keywords closely overlap."
+
     },
     {
         "question": "If Sara removes ‘web spam’ from her keywords, what might happen to Masashi Toyoda’s cosine similarity ranking?",
@@ -984,38 +990,40 @@ def load_questions(who):
         "explanation": "Counterfactual-Based: ‘Web spam’ is a key overlap with Toyoda’s keywords, so removing it would lower his score."
     },
     {
-        "question": "How would adding ‘security’ to Sara’s keywords affect Reza Shokri’s LDA-based recommendation?",
+         "question": "How should a cosine similarity score be interpreted?",
         "options": [
-            "Decrease his score due to topic mismatch",
-            "Increase his score due to alignment with Topic 21",
-            "Have no effect",
-            "Move him to the lowest rank"
+            "It ranges from 0 to 1, where scores closer to 1 indicate stronger similarity.",
+            "It ranges from 0 to 1, where scores closer to 0 indicate stronger similarity.",
+            "It represents the exact percentage of keywords shared by the two profiles.",
+            "It represents the difference between the total numbers of keywords in the two profiles."
         ],
-        "answer": "Increase his score due to alignment with Topic 21",
+        "answer": "It ranges from 0 to 1, where scores closer to 1 indicate stronger similarity.",
         "question_number": 13,
-        "explanation": "Counterfactual-Based: ‘Security’ aligns with Topic 21 (servic, web, secur), likely boosting Shokri’s LDA score."
+        "explanation": "Model Inner Working: In this system, cosine similarity ranges from 0 to 1. Scores closer to 1 indicate stronger alignment between keyword-vector patterns, while scores closer to 0 indicate weaker alignment."
+
     },
     {
-        "question": "If Sara emphasizes ‘web mining’ more, which advisor might drop in cosine similarity ranking?",
+         "question": "If 'technology' replaced 'product' in the keywords for selected Topic 21, what would likely happen to the LDA-based recommendations?",
         "options": [
-            "Masashi Toyoda",
-            "Sang Ho Lee",
-            "J. A. Levin",
-            "Reza Shokri"
+            "All advisors’ topic similarity scores would remain unchanged",
+            "Mimoun Malki’s score would increase",
+            "Sayed Golam Hassan Tabatabaei’s score would decrease",
+            "Sayed Golam Hassan Tabatabaei’s score would increase"
         ],
-        "answer": "Sang Ho Lee",
+        "answer": "Mimoun Malki’s score would increase",
         "question_number": 14,
-        "explanation": "Counterfactual-Based: Lee’s keywords (e.g., web robot) are less aligned with ‘web mining’ than Toyoda’s or Levin’s, potentially lowering his score."
+        "explanation": "Feature-Based: The selected topic’s keyword vector is compared with each advisor’s keyword profile. Replacing 'product' with 'technology' would likely increase the score of an advisor whose profile contains 'technology' but not 'product,' because the keyword overlap would become stronger."
+
     },
     {
         "question": "How is Sara’s keyword list [online communities, web mining, web spam] converted to a vector for cosine similarity?",
         "options": [
-            "By assigning random numbers to each keyword",
-            "By counting the frequency of each keyword in a fixed vocabulary",
-            "By grouping keywords into topics",
-            "By analyzing keyword sentiment"
+            "By assigning numerical values to the keywords according to their relative importance",
+            "By assigning 1 to present keywords and 0 to absent keywords using a fixed keyword order",
+            "By organizing the keywords into broader research topics and representing their topic probabilities",
+            "By analyzing the meanings of the keywords and assigning values based on their semantic relationships"
         ],
-        "answer": "By counting the frequency of each keyword in a fixed vocabulary",
+        "answer": "By assigning 1 to present keywords and 0 to absent keywords using a fixed keyword order",
         "question_number": 15,
         "explanation": "Model Inner Working: Keywords are represented as a count vector based on their frequency in a predefined vocabulary."
     },
@@ -1032,19 +1040,19 @@ def load_questions(who):
         "explanation": "Model Inner Working: The dot product computes the sum of products of corresponding elements in Sara’s and advisors’ vectors."
     },
     {
-        "question": "If Sara’s vector is [1, 1, 1] for [web mining, web spam, online communities] and Toyoda’s is [2, 1, 1], what is the dot product?",
+        "question": "If Sara’s vector is [1, 1, 0, 0] and Toyoda’s is [1, 1, 0, 0], what is cosine similarity score?",
         "options": [
-            "3",
-            "4",
-            "5",
-            "6"
+            "0.0",
+            "1.0",
+            "0.98",
+            "0.02"
         ],
-        "answer": "4",
+        "answer": "1.0",
         "question_number": 17,
-        "explanation": "Model Inner Working: Dot product = (1×2) + (1×1) + (1×1) = 2 + 1 + 1 = 4."
+        "explanation": " "
     },
     {
-        "question": "What does Topic 21 (servic, web, secur) represent in the LDA model for Sara’s interests?",
+        "question": "What does selected Topic represent in the LDA model for Sara’s interests?",
         "options": [
             "A collection of unrelated keywords",
             "A group of keywords related to web services and security",
@@ -1068,7 +1076,7 @@ def load_questions(who):
         "explanation": "Scenario-Specific: Toyoda’s keywords (web community, web spam) align closely with Sara’s interests, leading to a high score of 0.828."
     },
     {
-        "question": "Why does Aaron L. Fogelson rank first in LDA but not in cosine similarity for Sara?",
+        "question": "Why does Sayed Golam Hassan Tabatabaei rank first in LDA but not in cosine similarity for Sara?",
         "options": [
             "His keywords exactly match Sara’s",
             "His topic distribution aligns with Topic 21, but his keywords are unrelated",
