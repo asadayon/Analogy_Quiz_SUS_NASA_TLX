@@ -101,52 +101,54 @@ def load_questions(who):
     if who=='Amina Rahman':
         return [
      {
-        "question": "How can text similarity-based models be used in an advisor recommender system for Amina Rahman’s research interests?",
+        "question": "How does the text similarity model recommend advisors for Amina Rahman’s research interests?",
         "options": [
-            "By analyzing personality traits of Amina and advisors to find the best match",
-            "By comparing textual descriptions of context-aware mobile systems and adaptive applications from Amina and advisors to find the best alignment",
-            "By ranking advisors based on their publication count in mobile phone technologies",
-            "By considering the geographical location of Amina and advisors for recommendations"
+            "By comparing Amina’s personality traits with the advisors’ professional characteristics",
+            "By comparing Amina’s selected research keywords with advisors’ publication-keyword profiles",
+            "By ranking advisors according to their number of publications on mobile technologies",
+            "By comparing Amina’s location with the geographical locations of the advisors"
         ],
-        "answer": "By comparing textual descriptions of context-aware mobile systems and adaptive applications from Amina and advisors to find the best alignment",
-        "question_number": 1,
-        "explanation": "Feature-Based: The text similarity model uses cosine similarity to compare Amina’s keywords, such as 'mobile devices' and 'mobile applications,' with advisors’ publication keywords to identify alignment."
-    },
+        "answer": "By comparing Amina’s selected research keywords with advisors’ publication-keyword profiles",
+         "question_number": 1,
+        "explanation": "Model Inner Working: The text similarity model represents Amina’s selected keywords and each advisor’s publication keywords as vectors. It then calculates cosine similarity to identify advisors whose keyword patterns align most closely with her interests."
+          },
     {
-        "question": "What is the primary goal of using cosine similarity in an advisor recommendation system for Amina Rahman’s research? For example, if Amina’s keywords include 'context-aware systems' and 'adaptive mobile apps,' the system identifies advisors with similar keywords in their profiles.",
+       "question": "What is the primary goal of cosine similarity in Amina Rahman’s advisor recommendations?",
         "options": [
-            "To find the shortest path between mobile technology topics",
-            "To measure the similarity between Amina’s keywords (e.g., context-aware systems, adaptive mobile apps) and advisors’ research profiles",
-            "To classify mobile user experience techniques into predefined categories",
-            "To generate random advisor-student pairings for resource-constrained device research"
+            "To organize Amina’s keywords into predefined research topics",
+            "To measure the alignment between Amina’s keyword vector and advisors’ publication-keyword vectors",
+            "To rank advisors by the frequency of Amina’s keywords across their publications",
+            "To predict which research topics Amina and the advisors may study in the future"
         ],
-        "answer": "To measure the similarity between Amina’s keywords (e.g., context-aware systems, adaptive mobile apps) and advisors’ research profiles",
+        "answer": "To measure the alignment between Amina’s keyword vector and advisors’ publication-keyword vectors",
         "question_number": 2,
-        "explanation": "Feature-Based: The system recommends advisors whose publication keywords (e.g., 'context-aware systems,' 'adaptive mobile apps') closely match Amina’s, as measured by cosine similarity."
+        "explanation": "Model Inner Working: Cosine similarity measures the alignment between Amina’s selected research keywords, such as 'context-aware systems' and 'adaptive mobile apps,' and the keywords in each advisor’s publication profile. Stronger alignment produces a higher similarity score."
+
     },
     {
-        "question": "What role does LDA topic modeling play in recommending advisors for Amina’s research interests in mobile devices and adaptive systems?",
+        "question": "What role does LDA play in recommending advisors for Amina’s research interests?",
         "options": [
-            "It calculates the Euclidean distance between keyword vectors",
-            "It groups Amina’s keywords into research themes like mobile technologies and compares them to advisors’ topic profiles",
-            "It ranks advisors based on their citation counts",
-            "It directly matches individual keywords without considering themes"
+            "It directly calculates the similarity between Amina’s individual keywords and advisors’ keywords",
+            "It identifies the learned research topic most relevant to Amina’s keywords based on keyword co-occurrence patterns",
+            "It ranks advisors according to their citation and publication counts within each research topic",
+            "It assigns advisors to predefined research areas based only on exact keyword matches"
         ],
-        "answer": "It groups Amina’s keywords into research themes like mobile technologies and compares them to advisors’ topic profiles",
+        "answer": "It identifies the learned research topic most relevant to Amina’s keywords based on keyword co-occurrence patterns",
         "question_number": 3,
-        "explanation": "Model Inner Working: LDA assigns keywords like 'mobile devices' to topics (e.g., Topic 22: mobil, devic, system) and compares Amina’s topic distribution to advisors’ profiles."
-    },
+        "explanation": "Model Inner Working: LDA learns broader topics from keywords that frequently occur together in the training data. It estimates how strongly Amina’s selected keywords relate to each topic and selects the topic with the highest probability, such as Topic 22 (mobil, devic, system). The system then compares the selected topic’s keyword vector with advisors’ keyword profiles using cosine similarity."
+     },
     {
-        "question": "Why does the advisor recommendation system for Amina use both cosine similarity and LDA topic modeling?",
+        "question": "Why does Amina’s advisor recommendation system use both cosine similarity and LDA?",
         "options": [
-            "To reduce the computational complexity of keyword matching",
-            "To combine specific keyword matches with broader research theme alignment for robust recommendations",
-            "To ensure all advisors have the same ranking in both models",
-            "To eliminate the need for user-provided keywords"
+            "To provide complementary recommendations based on direct keyword alignment and broader research-topic alignment",
+            "To combine both scores into a single score that always produces more accurate recommendations",
+            "To ensure that advisors receive the same rankings from both recommendation models",
+            "To allow LDA to replace Amina’s selected keywords with automatically generated interests"
         ],
-        "answer": "To combine specific keyword matches with broader research theme alignment for robust recommendations",
+        "answer": "To provide complementary recommendations based on direct keyword alignment and broader research-topic alignment",
         "question_number": 4,
-        "explanation": "General: Using both models ensures precise keyword matches (cosine) and thematic alignment (LDA), improving recommendation accuracy for Amina’s interests."
+        "explanation": "General: Cosine similarity measures direct alignment between Amina’s selected keywords and advisors’ publication-keyword profiles. LDA first identifies the broader topic that best represents her interests and then uses that topic to recommend advisors. The two models therefore offer different but complementary views of research alignment."
+
     },
     {
         "question": "What does Oriana Riva’s cosine similarity score of 0.9104 indicate for Amina’s research interests in mobile applications?",
@@ -164,21 +166,21 @@ def load_questions(who):
         "question": "Which of Amina’s keywords likely contributed most to Oriana Riva’s top ranking in the cosine similarity model?",
         "options": [
             "Resource-constrained mobile devices",
-            "Parallel processing",
-            "Software evolution",
-            "Static program analysis"
+            "Mobile devices",
+            "Mobile applications",
+            "Mobile phones"
         ],
         "answer": "Resource-constrained mobile devices",
         "question_number": 6,
         "explanation": "Feature-Based: Oriana’s keywords include 'resource-constrained mobile device,' directly matching Amina’s interest, contributing to her high score of 0.9104."
     },
     {
-        "question": "Why was Sotirios I. Maniatis ranked first in the LDA topic modeling results for Amina?",
+        "question": "Why was Oriana Riva ranked first in the LDA topic modeling results for Amina?",
         "options": [
-            "His keywords focus on static program analysis",
-            "His topic distribution aligns strongly with Topic 22 (mobil, devic, system)",
-            "He has the highest cosine similarity score",
-            "His research is unrelated to mobile technologies"
+            "Her keywords focus on static program analysis",
+            "Her topic distribution aligns strongly with Topic 22 (mobil, devic, system)",
+            "She has the highest cosine similarity score",
+            "Her research is unrelated to mobile technologies"
         ],
         "answer": "His topic distribution aligns strongly with Topic 22 (mobil, devic, system)",
         "question_number": 7,
@@ -197,28 +199,30 @@ def load_questions(who):
         "explanation": "Scenario-Specific: A high probability for Topic 22 (mobil, devic, system) indicates strong alignment with Amina’s mobile-focused research."
     },
     {
-        "question": "Which of Amina’s keywords likely influenced Enrico Rukzio’s second-place ranking in the cosine similarity model?",
-        "options": [
-            "Mobile interaction technique",
-            "Worst-case execution time",
-            "Software quality",
-            "Topological space"
+         "question": "Top topic similarity scores are closer to 0.5, while top text similarity scores are above 0.8. Does this mean the LDA model is not working?",
+         "options": [
+            
+            "Yes. The lower scores suggest that the topics generated by LDA do not accurately represent the advisors’ overall research areas.",
+            "Yes. Both models evaluate research alignment, so a properly working LDA model should produce scores similar to the text similarity scores.",
+            "No. A score near 0.5 can still indicate good alignment because LDA compares broader topic patterns rather than directly matching specific keywords.",
+            "No. The difference occurs mainly because LDA considers a larger collection of publications, which automatically reduces the resulting scores."
         ],
-        "answer": "Mobile interaction technique",
+        "answer": "No. A score near 0.5 can still indicate good alignment because LDA compares broader topic patterns rather than directly matching specific keywords.",
         "question_number": 9,
-        "explanation": "Feature-Based: Enrico’s keywords like 'mobile interaction technique' align with Amina’s focus on mobile applications, contributing to his score of 0.8383."
+        "explanation": "Model-Specific: A topic similarity score near 0.5 does not mean the LDA model is not working. LDA captures broader topic patterns, so a score near 0.5 can still represent good topic-level alignment. Text similarity directly compares specific keywords, which can produce higher scores when the keywords closely overlap."
     },
     {
-        "question": "How did Amina’s keyword 'mobile users' contribute to Cory Cornelius’ ranking in the cosine similarity model?",
+        "question": "How did Amina’s keyword 'mobile users' affect Cory Cornelius’ cosine similarity ranking?",
         "options": [
-            "It had no impact due to lack of overlap",
-            "It matched Cory’s focus on 'personal mobile device' and 'mobile application'",
-            "It reduced Cory’s ranking due to mismatch",
-            "It aligned with Cory’s focus on static analysis"
+            "It increased his score because his profile contains several other mobile-related keywords",
+            "It contributed to a lower relative score because 'mobile users' does not appear in his profile",
+            "It had no effect because cosine similarity considers only LDA topics",
+            "It increased his score because all phrases containing 'mobile' are treated as exact matches"
         ],
-        "answer": "It matched Cory’s focus on 'personal mobile device' and 'mobile application'",
+        "answer": "It contributed to a lower relative score because 'mobile users' does not appear in his profile",
         "question_number": 10,
-        "explanation": "Feature-Based: Cory’s keywords overlap with Amina’s 'mobile users' and 'mobile applications,' leading to his score of 0.8224."
+        "explanation": "Feature-Based: Amina selected 'mobile users,' but this keyword does not appear in Cory Cornelius’ profile. Therefore, it does not add to their vector overlap, contributing to Cory’s lower score relative to an advisor whose profile contains the keyword. The missing keyword does not directly subtract points; it simply provides no positive contribution to the dot product."
+
     },
     {
         "question": "Which advisor’s keywords least align with Amina’s in the cosine similarity model?",
@@ -233,14 +237,14 @@ def load_questions(who):
         "explanation": "Scenario-Specific: Cory has the lowest cosine similarity score (0.8224) among the top three, indicating the least keyword alignment."
     },
     {
-        "question": "Why does Nico Zazworka rank second in LDA but not in the top three for cosine similarity?",
+        "question": "Why does Seong-Joon Baek rank second in LDA but not in the top three for cosine similarity?",
         "options": [
             "His keywords focus on mobile devices",
-            "His topic distribution aligns with Topic 22, but his keywords focus on software engineering",
+            "His topic distribution aligns with Topic 22, but his keywords focus on robot",
             "His cosine similarity score is higher than Oriana’s",
             "His research has no overlap with Amina’s"
         ],
-        "answer": "His topic distribution aligns with Topic 22, but his keywords focus on software engineering",
+        "answer": "His topic distribution aligns with Topic 22, but his keywords focus on robot",
         "question_number": 12,
         "explanation": "Scenario-Specific: Nico’s topic alignment with Topic 22 is strong, but his keywords (e.g., 'software evolution') differ from Amina’s mobile focus."
     },
@@ -262,59 +266,62 @@ def load_questions(who):
             "Oriana Riva",
             "Enrico Rukzio",
             "Cory Cornelius",
-            "Sotirios I. Maniatis"
+            "Seong-Joon Baek"
         ],
         "answer": "Cory Cornelius",
         "question_number": 14,
         "explanation": "Counterfactual-Based: Cory’s keywords include 'wearable sensor,' increasing alignment with Amina’s updated interests, potentially boosting his score."
     },
     {
-        "question": "How would adding 'wireless network' to Amina’s keywords affect the LDA topic modeling rankings?",
+        "question": "Why is Oriana Riva’s text similarity score 0.9104, while her topic similarity score is 0.5137?",
         "options": [
-            "It would likely boost Sotirios I. Maniatis’ ranking",
-            "It would lower Nico Zazworka’s ranking",
-            "It would have no effect on rankings",
-            "It would make Reinhold Heckmann rank first"
+            "The text similarity model uses Amina’s selected keywords as the input vector, while the topic similarity model uses the broader selected topic’s keywords as the input vector",
+            "The topic similarity model divides the text similarity score by two to account for the broader scope of LDA topics",
+            "The text similarity model uses advisors’ publication keywords, while the topic similarity model ignores publication data and uses only topic probabilities",
+            "Both models should produce similar scores, so this difference indicates a model-output error that needs to be rechecked"
         ],
-        "answer": "It would likely boost Sotirios I. Maniatis’ ranking",
+        "answer": "The text similarity model uses Amina’s selected keywords as the input vector, while the topic similarity model uses the broader selected topic’s keywords as the input vector",
         "question_number": 15,
-        "explanation": "Counterfactual-Based: Maniatis’ keywords include 'wireless network,' aligning with Topic 22, likely increasing his LDA similarity score."
+        "explanation": "Model-Specific: The text similarity model creates a vector from Amina’s selected keywords and compares it with each advisor’s publication-keyword vector. The topic similarity model instead creates a vector from the broader selected topic’s keywords and compares it with the same advisor profiles. Because the two input vectors contain different keywords and represent different levels of research alignment, their scores can differ substantially. A topic similarity score of 0.5137 does not, by itself, indicate a model error."
+
     },
     {
-        "question": "How is Amina’s keyword 'mobile devices' represented in the cosine similarity model?",
+       "question": "How is Amina’s keyword 'mobile devices' represented in the cosine similarity model?",
         "options": [
-            "As a topic probability",
-            "As a numerical count in a keyword vector",
-            "As a static analysis metric",
-            "As a software evolution score"
+            "As a probability showing how strongly it belongs to an LDA topic",
+            "As 1 in its fixed vector position because the keyword is present",
+            "As the number of times it appears across all advisors’ publications",
+            "As a similarity score calculated from related mobile-technology keywords"
         ],
-        "answer": "As a numerical count in a keyword vector",
+        "answer": "As 1 in its fixed vector position because the keyword is present",
         "question_number": 16,
-        "explanation": "Model Inner Working: Keywords like 'mobile devices' are converted into a count vector (e.g., [2, 1, 0, 1]) for cosine similarity calculations."
+        "explanation": "Model Inner Working: The model uses a fixed keyword order to create binary vectors. The position for 'mobile devices' receives 1 because Amina selected it; keywords she did not select receive 0. For example, her vector could be [1, 1, 0, 1]."
+
     },
     {
-        "question": "What does the dot product in cosine similarity represent for Amina’s keywords?",
+        "question": "What does the dot product represent when comparing Amina’s keyword vector with an advisor’s keyword vector?",
         "options": [
-            "The sum of matching keyword frequencies",
-            "The total number of publications",
-            "The Euclidean distance between vectors",
-            "The probability of topic alignment"
+            "The number of keywords Amina and the advisor have in common",
+            "The total number of keywords in both profiles",
+            "The distance between their keyword vectors",
+            "The probability that they belong to the same LDA topic"
         ],
-        "answer": "The sum of matching keyword frequencies",
+        "answer": "The number of keywords Amina and the advisor have in common",
         "question_number": 17,
-        "explanation": "Model Inner Working: The dot product sums the product of matching keyword counts, e.g., for [2, 1] and [2, 2], it’s (2*2) + (1*2) = 6."
+        "explanation": "Model Inner Working: The dot product multiplies the corresponding 0 and 1 values in Amina’s and the advisor’s vectors and adds the results. Each keyword they have in common adds 1 to the dot product."
+
     },
     {
-        "question": "If Amina’s keyword vector is [2, 1, 0, 1] for [mobile devices, mobile applications, sensor data, resource-constrained] and Oriana’s is [2, 2, 0, 1], what is the dot product?",
+        "question": "If Amina’s keyword vector is [0, 0, 1, 1] for [mobile devices, mobile applications, sensor data, resource-constrained] and Oriana’s is [0, 0, 1, 1], what is the cosine similarity score?",
         "options": [
-            "4",
-            "5",
-            "6",
-            "7"
+            "0.0",
+            "0.02",
+            "0.98",
+            "1.0"
         ],
-        "answer": "6",
+        "answer": "1.0",
         "question_number": 18,
-        "explanation": "Model Inner Working: Dot product = (2*2) + (1*2) + (0*0) + (1*1) = 4 + 2 + 0 + 1 = 6."
+        "explanation": " "
     },
     {
         "question": "In LDA topic modeling, how are Amina’s keywords grouped into Topic 22?",
