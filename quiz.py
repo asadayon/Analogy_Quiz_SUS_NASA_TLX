@@ -756,12 +756,12 @@ def load_questions(who):
     {
         "question": "Why is Oriana Riva ranked top in LDA topic modeling but not in the top 3 for cosine similarity?",
         "options": [
-            "Oriana Riva’s keywords perfectly match Emily’s keywords.",
-            "Oriana Riva’s topic distribution aligns with Emily’s, but his keywords differ significantly.",
+            "Oriana Riva’s keywords perfectly match David’s keywords.",
+            "Oriana Riva’s topic distribution aligns with David’s, but his keywords differ significantly.",
             "Oriana Riva’s publications have low citation counts.",
-            "Oriana Rivas research focuses on a niche topic unrelated to Emily’s keywords."
+            "Oriana Rivas research focuses on a niche topic unrelated to David’s keywords."
         ],
-        "answer": "G Engels’s topic distribution aligns with Emily’s, but his keywords differ significantly.",
+        "answer": "G Engels’s topic distribution aligns with David’s, but his keywords differ significantly.",
         "question_number": 14,
         "explanation": ""
     },
