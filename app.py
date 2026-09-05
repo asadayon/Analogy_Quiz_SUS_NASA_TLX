@@ -7,6 +7,8 @@ from quiz import load_survey, load_sus, load_nasa_tlx
 import time
 from datetime import datetime, timezone
 
+st.set_page_config("Quiz & Survey", page_icon=":memo")
+
 SUPABASE_URL = st.secrets["SUP_URL"]
 SUPABASE_KEY = st.secrets["SUP_KEY"]
 
