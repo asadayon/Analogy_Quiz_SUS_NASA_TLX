@@ -426,6 +426,8 @@ if st.session_state.page == "post_quiz":
 if st.session_state.page == "post_quiz_submission":
     st.title("Thank you!")
     st.success("Your survey response has been submitted successfully.")
+    st.session_state.page = "home"
+    st.rerun()
 
 
 
